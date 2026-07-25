@@ -470,7 +470,7 @@ body {
   transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 .profile-soc-btn:hover {
-  background: var(--acc); color: #fff; border-color: var(--acc);
+  background: var(--acc); color: #000; border-color: var(--acc);
   transform: translate(-1px, -1px); box-shadow: 2px 2px 0 var(--txt);
 }
 
@@ -623,7 +623,7 @@ body {
   font-family: var(--font-mono);
   font-size: 8px; letter-spacing: 0.2em;
   padding: 3px 8px;
-  background: var(--acc); color: #fff;
+  background: var(--acc); color: #000;
   font-weight: 700;
 }
 
@@ -792,8 +792,8 @@ body {
   border: 2px solid var(--txt);
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-.mp-gh-link:hover { background: var(--acc); color: #fff; border-color: var(--acc); }
-.mp-demo-link:hover { background: var(--acc2); color: #fff; border-color: var(--acc2); }
+.mp-gh-link:hover { background: var(--acc); color: #000; border-color: var(--acc); }
+.mp-demo-link:hover { background: var(--acc2); color: #000; border-color: var(--acc2); }
 .mp-demo-disabled {
   opacity: 0.35; cursor: not-allowed; pointer-events: none;
 }
@@ -912,7 +912,7 @@ textarea.c-input { resize: none; }
   position: relative; overflow: hidden;
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 26px;
-  background: var(--acc); color: #fff;
+  background: var(--acc); color: #000;
   font-size: 12px; font-weight: 800; letter-spacing: 0.12em;
   text-transform: uppercase; text-decoration: none;
   border: 2px solid var(--txt); cursor: pointer;
@@ -957,7 +957,7 @@ textarea.c-input { resize: none; }
   transition: background 0.15s, color 0.15s, transform 0.15s;
 }
 .btn-icon:hover {
-  background: var(--acc); color: #fff; border-color: var(--acc);
+  background: var(--acc); color: #000; border-color: var(--acc);
   transform: translate(-1px, -1px);
 }
 
