@@ -757,10 +757,17 @@ body {
   margin-top: auto;
 }
 .mp-hits li {
-  font-size: 13px; color: var(--t2);
+  font-size: 13px; color: var(--txt);
   display: flex; gap: 7px; line-height: 1.5;
 }
 .mp-hits li::before { content: '▸'; color: var(--acc); flex-shrink: 0; }
+.dark .mp-hits {
+  background: color-mix(in srgb, var(--surface) 85%, var(--acc) 15%);
+  border: 1px solid color-mix(in srgb, var(--acc) 25%, transparent);
+  border-radius: 3px;
+  padding: 8px 10px;
+}
+.dark .mp-hits li { color: var(--t2); }
 
 .mp-foot {
   padding: 12px 20px;
@@ -862,6 +869,11 @@ textarea.c-input { resize: none; }
 .soc-btn:hover {
   transform: translate(-2px, -2px);
   box-shadow: 3px 3px 0 var(--txt);
+}
+.dark .soc-btn {
+  color: var(--t2);
+  background: var(--surface);
+  border-color: var(--txt);
 }
 
 /* ══════════════════════════════════════════════════════
