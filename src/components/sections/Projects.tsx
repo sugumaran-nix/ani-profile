@@ -1,62 +1,62 @@
 'use client'
-import { Github } from 'lucide-react'
+import { Github, ExternalLink } from 'lucide-react'
 
 const PROJECTS = [
   {
     title: 'Fake Job Detector',
     category: 'Machine Learning',
-    summary: 'End-to-end fraud detection on 17,880 real job postings with custom NLP heuristics and REST API inference.',
+    summary: 'Fraud detection on 17,880 job postings using NLP heuristics, TF-IDF pipeline, and REST API inference.',
     hits: [
       '87.57% Fraud F1-score on imbalanced dataset',
       '10,000-feature TF-IDF bigram pipeline',
       'Custom 10-signal URL fraud heuristic',
-      'Runtime model switching via REST API',
       'Sub-800ms end-to-end inference',
     ],
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/fake-job-posting-ml',
-    c1: '#D93A00', c2: '#F0B800', c3: '#FF7030',
+    demo: '#', // replace with your deployed URL
   },
   {
     title: 'AI Content Detector',
     category: 'NLP',
-    summary: 'Statistical classifier distinguishing AI-generated text from human writing using perplexity and burstiness features.',
+    summary: 'Statistical classifier distinguishing AI-generated text from human writing via perplexity and burstiness.',
     hits: [
       'Perplexity, burstiness & variance features',
       'Sentence-level explainability of AI spans',
-      'Evaluated on 500+ text samples',
       'Structured JSON with confidence scores',
       'Low-latency FastAPI backend',
     ],
+    img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/ai-content-detector',
-    c1: '#8B5FFF', c2: '#00E8CC', c3: '#4488FF',
+    demo: 'https://sugum4r4n-ai-content-detector.hf.space',
   },
   {
     title: 'Sketchline',
     category: 'Real-time WebSocket',
-    summary: 'Multiplayer collaborative whiteboard built on a custom 7-message JSON WebSocket protocol — no third-party libs.',
+    summary: 'Multiplayer collaborative whiteboard on a custom 7-message JSON WebSocket protocol — zero third-party libs.',
     hits: [
       'Sub-100ms stroke synchronisation',
-      'Custom 7-message JSON protocol',
       '20 cursor updates per second',
       'Exponential backoff reconnection',
       'Board state replay on reconnect',
     ],
+    img: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/Sketchline-whiteboard',
-    c1: '#22C55E', c2: '#06B6D4', c3: '#0EA5E9',
+    demo: '#', // replace with your deployed URL
   },
   {
     title: 'ProjectScope',
     category: 'Productivity App',
-    summary: 'Eisenhower Matrix drag-and-drop task manager with keyboard accessibility and cross-tab localStorage sync.',
+    summary: 'Eisenhower Matrix drag-and-drop task manager with keyboard accessibility and cross-tab sync.',
     hits: [
       'dnd-kit drag-and-drop, keyboard accessible',
       'localStorage + cross-tab sync',
       'Eisenhower Matrix prioritisation',
-      'WCAG-compliant interactions',
-      'Fully responsive production deployment',
+      'WCAG-compliant, fully responsive',
     ],
+    img: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/ProjectScope',
-    c1: '#F59E0B', c2: '#EF4444', c3: '#EC4899',
+    demo: '#', // replace with your deployed URL
   },
 ]
 
@@ -68,11 +68,7 @@ export function Projects() {
       style={{ paddingTop: '6vw', paddingBottom: '6vw', position: 'relative', overflow: 'hidden' }}
     >
       {/* Kanji — 仕事 (work / mission) */}
-      <span
-        className="kanji-bg"
-        aria-hidden="true"
-        style={{ right: '-1%', top: '2%', lineHeight: 1.05 }}
-      >
+      <span className="kanji-bg" aria-hidden="true" style={{ right: '-1%', top: '2%', lineHeight: 1.05 }}>
         仕<br />事
       </span>
 
@@ -83,15 +79,12 @@ export function Projects() {
           <div className="sec-rule" />
         </div>
 
-        {/* Manga panel grid */}
         <div className="manga-grid reveal delay-1">
           {PROJECTS.map((p) => (
             <div key={p.title} className="mp-card">
-              {/* Colour splash header with screen-tone */}
+              {/* Image header */}
               <div className="mp-header">
-                <div className="mp-splash" style={{ background: p.c1, width: 200, height: 200, top: -70, left: -50, opacity: 0.85 }} />
-                <div className="mp-splash" style={{ background: p.c2, width: 160, height: 160, top: -60, left: 90,  opacity: 0.70 }} />
-                <div className="mp-splash" style={{ background: p.c3, width: 100, height: 100, top: -20, right: 20, opacity: 0.55 }} />
+                <img src={p.img} alt={p.title} />
                 <div className="mp-header-bar">
                   <span className="mp-cat f-mono">{p.category}</span>
                 </div>
@@ -106,8 +99,17 @@ export function Projects() {
                 </ul>
               </div>
 
-              {/* Footer */}
+              {/* Footer — two buttons */}
               <div className="mp-foot">
+                {p.demo !== '#' ? (
+                  <a href={p.demo} target="_blank" rel="noopener noreferrer" className="mp-demo-link f-mono">
+                    <ExternalLink size={12} /> Live Demo
+                  </a>
+                ) : (
+                  <span className="mp-demo-link mp-demo-disabled f-mono" aria-disabled>
+                    <ExternalLink size={12} /> Demo
+                  </span>
+                )}
                 <a href={p.github} target="_blank" rel="noopener noreferrer" className="mp-gh-link f-mono">
                   <Github size={12} /> GitHub
                 </a>
@@ -116,9 +118,8 @@ export function Projects() {
           ))}
         </div>
 
-        {/* GitHub CTA strip */}
-        <div className="proj-cta-row reveal delay-2">
-          <span className="proj-cta-label f-mono">4 projects shipped · More on GitHub</span>
+        {/* View all CTA — no label text */}
+        <div className="proj-cta-row reveal delay-2" style={{ justifyContent: 'flex-end' }}>
           <a
             href="https://github.com/sugumaran-nix"
             target="_blank"

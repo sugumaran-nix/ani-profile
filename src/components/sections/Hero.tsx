@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Download, Mail, Zap, Code2, Brain, Globe } from 'lucide-react'
+import { Download, Mail, Zap, Code2, Brain, Github, Linkedin } from 'lucide-react'
 
 const ROLES = [
   'AI/ML Engineer',
@@ -11,30 +11,18 @@ const ROLES = [
   'Backend Engineer',
 ]
 
-const STATS = [
-  { icon: Brain,  label: 'AI / ML',    value: 'PYTHON-FIRST',  sub: 'Scikit-learn · BERT · FastAPI' },
-  { icon: Code2,  label: 'Full Stack', value: 'SHIPPED',       sub: 'React · Next.js · TypeScript'  },
-  { icon: Zap,    label: 'Status',     value: 'AVAILABLE',     sub: 'India or Remote · Immediately'  },
-  { icon: Globe,  label: 'Degree',     value: 'MCA 2026',      sub: 'Anna University · 80%'          },
+const PROFILE_SOCIALS = [
+  { Icon: Github,   href: 'https://github.com/sugumaran-nix',     label: 'GitHub'   },
+  { Icon: Linkedin, href: 'https://linkedin.com/in/sugumaran-nix', label: 'LinkedIn' },
+  { Icon: Mail,     href: 'mailto:sugumarankugan@gmail.com',        label: 'Email'    },
 ]
 
 function GlitchName() {
   return (
     <div className="hero-name-wrap">
-      <div
-        className="hero-name-shadow"
-        aria-hidden="true"
-      >
-        SUGUMARAN
-      </div>
+      <div className="hero-name-shadow" aria-hidden="true">SUGUMARAN</div>
       <h1 className="hero-name f-display">
-        <span
-          className="glitch"
-          data-text="SUGUMARAN"
-          style={{ display: 'block' }}
-        >
-          SUGUMARAN
-        </span>
+        <span className="glitch" data-text="SUGUMARAN" style={{ display: 'block' }}>SUGUMARAN</span>
         <span className="accent glitch" data-text="S.">S.</span>
       </h1>
     </div>
@@ -69,7 +57,6 @@ function RoleFlip() {
   )
 }
 
-/* Speed-line SVG burst behind name */
 function SpeedLines() {
   return (
     <svg
@@ -93,9 +80,7 @@ function SpeedLines() {
         const x2 = 400 + Math.cos(rad) * 420
         const y2 = 400 + Math.sin(rad) * 420
         return (
-          <line
-            key={i}
-            x1={x1} y1={y1} x2={x2} y2={y2}
+          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
             stroke="currentColor"
             strokeWidth={i % 3 === 0 ? 3 : 1.5}
             strokeLinecap="square"
@@ -121,53 +106,35 @@ export function Hero() {
     return () => window.removeEventListener('mousemove', onMove)
   }, [])
 
-  /* Stagger variants */
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.08 } },
-  }
+  const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
   const slamLeft = {
     hidden: { x: -120, opacity: 0, skewX: -8 },
-    show:   { x: 0, opacity: 1, skewX: 0,
-               transition: { type: 'spring', stiffness: 260, damping: 18 } },
+    show:   { x: 0, opacity: 1, skewX: 0, transition: { type: 'spring', stiffness: 260, damping: 18 } },
   }
   const slamUp = {
     hidden: { y: 80, opacity: 0, scaleY: 1.15 },
-    show:   { y: 0, opacity: 1, scaleY: 1,
-               transition: { type: 'spring', stiffness: 300, damping: 20 } },
+    show:   { y: 0, opacity: 1, scaleY: 1, transition: { type: 'spring', stiffness: 300, damping: 20 } },
   }
   const slamRight = {
     hidden: { x: 120, opacity: 0, skewX: 8 },
-    show:   { x: 0, opacity: 1, skewX: 0,
-               transition: { type: 'spring', stiffness: 260, damping: 18 } },
+    show:   { x: 0, opacity: 1, skewX: 0, transition: { type: 'spring', stiffness: 260, damping: 18 } },
   }
 
   return (
     <section id="hero" className="hero-root screentone">
       {/* Parallax orbs */}
-      <div
-        ref={orbRef}
-        style={{ position: 'absolute', inset: 0, pointerEvents: 'none', transition: 'transform 0.12s linear' }}
-      >
+      <div ref={orbRef} style={{ position: 'absolute', inset: 0, pointerEvents: 'none', transition: 'transform 0.12s linear' }}>
         <div className="hero-orb" style={{ width: 480, height: 480, top: -120, left: -100, background: 'var(--acc)', opacity: 0.10 }} />
         <div className="hero-orb" style={{ width: 320, height: 320, bottom: 0, right: '35%', background: 'var(--acc2)', opacity: 0.08, animationDelay: '-3s' }} />
         <div className="hero-orb" style={{ width: 220, height: 220, top: '25%', right: '10%', background: 'var(--acc3)', opacity: 0.07, animationDelay: '-5s' }} />
       </div>
 
       {/* LEFT — title card */}
-      <motion.div
-        className="hero-left"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {/* Speed lines behind name */}
+      <motion.div className="hero-left" variants={container} initial="hidden" animate="show">
         <SpeedLines />
 
         <motion.div variants={slamLeft}>
-          <span className="hero-eyebrow f-mono">
-            MCA Graduate · 2026 · Tamil Nadu, India
-          </span>
+          <span className="hero-eyebrow f-mono">MCA Graduate · 2026 · Tamil Nadu, India</span>
         </motion.div>
 
         <motion.div variants={slamLeft} style={{ position: 'relative', zIndex: 1 }}>
@@ -175,9 +142,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div variants={slamUp}>
-          <p className="hero-subtitle f-title">
-            AI / ML — Full Stack — NLP
-          </p>
+          <p className="hero-subtitle f-title">AI / ML — Full Stack — NLP</p>
         </motion.div>
 
         <motion.div variants={slamUp}>
@@ -200,42 +165,47 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* RIGHT — stat cards */}
-      <motion.div
-        className="hero-right"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {STATS.map((s, i) => (
-          <motion.div
-            key={s.label}
-            className="stat-card"
-            variants={slamRight}
-            custom={i}
-            whileHover={{ x: -4, y: -4, boxShadow: '8px 8px 0 var(--txt)' }}
-            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-          >
-            <div className="stat-card-label f-mono">
-              <s.icon size={10} />
-              {s.label}
-            </div>
-            <div className="stat-card-value f-display">{s.value}</div>
-            <div className="stat-card-sub f-mono">{s.sub}</div>
-          </motion.div>
-        ))}
+      {/* RIGHT — single profile card */}
+      <motion.div className="hero-right" variants={container} initial="hidden" animate="show">
+        <motion.div
+          className="profile-card"
+          variants={slamRight}
+          whileHover={{ x: -4, y: -4, boxShadow: '8px 8px 0 var(--txt)' }}
+          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+        >
+          <img
+            src="https://github.com/sugumaran-nix.png"
+            alt="Sugumaran S."
+            className="profile-card-img"
+          />
+          <p className="profile-card-info f-mono">
+            MCA Graduate · Full Stack &amp; AI/ML Engineer · Open to Work
+          </p>
+          <div className="profile-card-socials">
+            {PROFILE_SOCIALS.map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="profile-soc-btn"
+              >
+                <Icon size={15} />
+                <span>{label}</span>
+              </a>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
 
       {/* Bottom slash */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          height: 40, background: 'var(--bg2)',
-          clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
-          pointerEvents: 'none', zIndex: 3,
-        }}
-      />
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0,
+        height: 40, background: 'var(--bg2)',
+        clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
+        pointerEvents: 'none', zIndex: 3,
+      }} />
     </section>
   )
 }

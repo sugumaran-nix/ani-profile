@@ -428,44 +428,47 @@ body {
 .hero-right {
   padding: 40px 28px 40px 0;
   position: relative; z-index: 2;
-  display: flex; flex-direction: column; gap: 16px;
+  display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center;
 }
 
-/* Stat card — replaces terminal */
-.stat-card {
+/* Profile card */
+.profile-card {
   background: var(--surface);
   border: var(--manga-thick) solid var(--txt);
   box-shadow: 4px 4px 0 var(--acc);
-  padding: 20px 24px;
+  padding: 28px 28px 24px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; width: 100%; max-width: 320px;
   position: relative;
 }
-.stat-card-label {
-  font-family: var(--font-mono);
-  font-size: 9px; letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--acc);
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
+.profile-card-img {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  border: 3px solid var(--txt);
+  box-shadow: 3px 3px 0 var(--acc);
+  object-fit: cover; display: block;
 }
-.stat-card-label::before {
-  content: '';
-  width: 20px; height: 2px;
-  background: var(--acc);
-  flex-shrink: 0;
+.profile-card-info {
+  font-size: 10.5px; letter-spacing: 0.08em;
+  color: var(--t2); text-align: center;
+  line-height: 1.7; margin: 0;
 }
-.stat-card-value {
-  font-family: var(--font-display);
-  font-size: clamp(22px, 3vw, 34px);
-  font-weight: 900;
-  color: var(--txt);
-  line-height: 1;
-  letter-spacing: 0.04em;
+.profile-card-socials {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
 }
-.stat-card-sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--t3);
-  margin-top: 4px;
+.profile-soc-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  color: var(--txt); text-decoration: none;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border: 2px solid var(--txt);
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.profile-soc-btn:hover {
+  background: var(--acc); color: #fff; border-color: var(--acc);
+  transform: translate(-1px, -1px); box-shadow: 2px 2px 0 var(--txt);
 }
 
 /* Energy orbs */
@@ -613,16 +616,6 @@ body {
   font-size: 20px; font-weight: 700;
   color: var(--acc);
 }
-.edu-bar {
-  flex: 1; height: 4px;
-  background: var(--border);
-  overflow: hidden;
-}
-.edu-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--acc), var(--acc2));
-  transform-origin: left;
-}
 .edu-badge {
   font-family: var(--font-mono);
   font-size: 8px; letter-spacing: 0.2em;
@@ -723,33 +716,27 @@ body {
 
 /* Colour splash header */
 .mp-header {
-  height: 120px;
+  height: 180px;
   position: relative; overflow: hidden; flex-shrink: 0;
   background: #060606;
 }
-/* Screen-tone pattern overlay on header */
-.mp-header::after {
-  content: '';
-  position: absolute; inset: 0; z-index: 1;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
-  background-size: 5px 5px;
-}
-.mp-splash {
-  position: absolute; border-radius: 50%;
-  filter: blur(24px); pointer-events: none;
+.mp-header img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: brightness(0.88);
 }
 .mp-header-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 10px 20px;
-  background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%);
+  background: linear-gradient(0deg, rgba(0,0,0,0.80) 0%, transparent 100%);
   display: flex; justify-content: space-between; align-items: flex-end;
   z-index: 2;
 }
 .mp-cat {
   font-family: var(--font-mono); font-size: 9px;
   letter-spacing: 0.22em; text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
-  background: rgba(0,0,0,0.5); padding: 2px 8px;
+  color: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.55); padding: 2px 8px;
   border-left: 2px solid var(--acc);
 }
 
@@ -775,33 +762,33 @@ body {
 .mp-foot {
   padding: 12px 20px;
   border-top: 2px solid var(--txt);
-  display: flex; justify-content: flex-end;
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
 }
-.mp-gh-link {
+.mp-gh-link,
+.mp-demo-link {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
   color: var(--txt); text-decoration: none;
   letter-spacing: 0.1em;
   padding: 5px 12px;
   border: 2px solid var(--txt);
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .mp-gh-link:hover { background: var(--acc); color: #fff; border-color: var(--acc); }
+.mp-demo-link:hover { background: var(--acc2); color: #fff; border-color: var(--acc2); }
+.mp-demo-disabled {
+  opacity: 0.35; cursor: not-allowed; pointer-events: none;
+}
 
-/* GitHub CTA row */
+/* View all CTA row */
 .proj-cta-row {
   margin-top: 0;
   border: var(--manga-thick) solid var(--txt);
   border-top: none;
-  box-shadow: 6px 6px 0 var(--txt);
   background: var(--s2);
-  padding: 18px 24px;
-  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 24px;
+  display: flex; align-items: center;
   flex-wrap: wrap; gap: 12px;
-}
-.proj-cta-label {
-  font-family: var(--font-mono);
-  font-size: 11px; color: var(--t3); letter-spacing: 0.12em;
 }
 
 /* ══════════════════════════════════════════════════════
