@@ -1,3 +1,9 @@
+# Sugumaran S — Anime Portfolio
+
+Dual-theme anime portfolio: **Naruto (light)** × **Aizen (dark)**
+
+Built with Next.js 14, Tailwind CSS, Framer Motion.
+
 ## 🚀 Deploy to GitHub + Vercel
 
 ### Step 1 — Push to GitHub
@@ -17,6 +23,13 @@ git push -u origin main
 2. Import your GitHub repo
 3. Framework: **Next.js** (auto-detected)
 4. Click **Deploy** — done!
+
+## 🎨 Themes
+
+| Theme | Trigger | Palette |
+|-------|---------|---------|
+| Naruto (Light) | Default | Orange `#E14011` · Gold `#FDD501` · Blue `#024DA1` |
+| Aizen (Dark) | Toggle | Violet `#A78BFA` · Turquoise `#2DD4BF` · Crimson `#F87171` |
 
 ## 🛠 Tech Stack
 

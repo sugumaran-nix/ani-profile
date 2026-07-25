@@ -3,41 +3,31 @@ import { ThemeProvider } from '@/components/ui/ThemeProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Sugumaran S — AI/ML Engineer & Full Stack Developer',
-  description:
-    'Portfolio of Sugumaran S — MCA Graduate, AI/ML Engineer, Full Stack Developer specializing in Python, FastAPI, React, Next.js, NLP, and Machine Learning.',
-  keywords: [
-    'AI Engineer',
-    'ML Engineer',
-    'Python Developer',
-    'Full Stack Developer',
-    'NLP',
-    'FastAPI',
-    'React',
-    'Next.js',
-  ],
+  title: 'Sugumaran S — AI/ML & Full Stack Engineer',
+  description: 'Portfolio of Sugumaran S — MCA graduate specializing in AI/ML, Python, FastAPI, React, Next.js, and NLP.',
+  keywords: ['AI Engineer', 'ML Engineer', 'Python Developer', 'Full Stack', 'NLP', 'FastAPI', 'React', 'Next.js'],
   authors: [{ name: 'Sugumaran S', url: 'https://github.com/sugumaran-nix' }],
   openGraph: {
-    title: 'Sugumaran S — AI/ML Engineer',
+    title: 'Sugumaran S — AI/ML & Full Stack Engineer',
     description: 'Building intelligent systems end-to-end.',
     type: 'website',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Fonts — body & mono */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
+        {/* CDN Fonts — display fonts per theme */}
+        <link href="https://fonts.cdnfonts.com/css/ninja-naruto" rel="stylesheet" />
+        <link href="https://fonts.cdnfonts.com/css/alzelvin" rel="stylesheet" />
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>

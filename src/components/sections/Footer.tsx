@@ -1,32 +1,14 @@
 'use client'
-import { useTheme } from 'next-themes'
 import { Github, Linkedin, Mail } from 'lucide-react'
 
 export function Footer() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
-
   return (
-    <footer
-      className="py-10 border-t"
-      style={{
-        background: 'var(--bg-primary)',
-        borderColor: 'var(--border-subtle)',
-      }}
-    >
-      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div>
-          <p className="font-display font-bold text-lg mb-1" style={{ color: 'var(--accent-primary)' }}>
-            {isDark ? '藍染 · Sugumaran S' : '渦巻き · Sugumaran S'}
-          </p>
-          <p className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
-            {isDark
-              ? '"I have been here all along."'
-              : '"Believe it!"'}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-6">
+    <footer className="py-8 border-t" style={{ background: 'var(--bg-primary)', borderColor: 'var(--border-subtle)' }}>
+      <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="font-display font-bold text-base" style={{ color: 'var(--accent)' }}>
+          Sugumaran S
+        </p>
+        <div className="flex items-center gap-5">
           {[
             { icon: Github, href: 'https://github.com/sugumaran-nix', label: 'GitHub' },
             { icon: Linkedin, href: 'https://linkedin.com/in/sugumaran-nix', label: 'LinkedIn' },
@@ -40,16 +22,15 @@ export function Footer() {
               aria-label={label}
               className="transition-all duration-200 hover:scale-110"
               style={{ color: 'var(--text-muted)' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-primary)')}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
             >
-              <Icon size={20} />
+              <Icon size={18} />
             </a>
           ))}
         </div>
-
-        <p className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
-          © {new Date().getFullYear()} · Built with Next.js
+        <p className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+          © {new Date().getFullYear()}
         </p>
       </div>
     </footer>
