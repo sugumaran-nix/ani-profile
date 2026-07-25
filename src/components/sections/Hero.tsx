@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Download, Mail, Zap, Code2, Brain, Github, Linkedin } from 'lucide-react'
+import { Download, Mail, Github, Linkedin } from 'lucide-react'
 
 const ROLES = [
   'AI/ML Engineer',
@@ -165,34 +165,79 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* RIGHT — single profile card */}
-      <motion.div className="hero-right" variants={container} initial="hidden" animate="show">
+      {/* RIGHT — square profile card */}
+      <motion.div
+        className="hero-right"
+        variants={container}
+        initial="hidden"
+        animate="show"
+        style={{
+          padding: '40px 32px 40px 0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <motion.div
-          className="profile-card"
           variants={slamRight}
           whileHover={{ x: -4, y: -4, boxShadow: '8px 8px 0 var(--txt)' }}
           transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+          style={{
+            background: 'var(--surface)',
+            border: 'var(--manga-thick) solid var(--txt)',
+            boxShadow: '4px 4px 0 var(--acc)',
+            width: '100%',
+            aspectRatio: '1 / 1',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 24,
+            padding: '32px',
+            position: 'relative',
+          }}
         >
           <img
             src="https://github.com/sugumaran-nix.png"
             alt="Sugumaran S."
-            className="profile-card-img"
+            style={{
+              width: 160,
+              height: 160,
+              borderRadius: '50%',
+              border: '4px solid var(--txt)',
+              boxShadow: '4px 4px 0 var(--acc)',
+              objectFit: 'cover',
+              display: 'block',
+              flexShrink: 0,
+            }}
           />
-          <p className="profile-card-info f-mono">
-            MCA Graduate · Full Stack &amp; AI/ML Engineer · Open to Work
+          <p
+            className="f-mono"
+            style={{
+              fontSize: 13,
+              letterSpacing: '0.05em',
+              color: 'var(--t2)',
+              textAlign: 'center',
+              lineHeight: 1.8,
+              margin: 0,
+            }}
+          >
+            MCA Graduate · Full Stack &amp; AI/ML Engineer
+            <br />
+            <span style={{ color: 'var(--acc)', fontWeight: 700 }}>Open to Work</span>
           </p>
-          <div className="profile-card-socials">
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             {PROFILE_SOCIALS.map(({ Icon, href, label }) => (
-              <a
+              
                 key={label}
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                aria-label={label}
                 className="profile-soc-btn"
+                aria-label={label}
               >
-                <Icon size={15} />
-                <span>{label}</span>
+                <Icon size={16} />
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em' }}>{label}</span>
               </a>
             ))}
           </div>
