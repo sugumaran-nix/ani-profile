@@ -27,7 +27,7 @@ const SOCIALS = [
   {
     icon: Github, label: 'GitHub',
     href: 'https://github.com/sugumaran-nix',
-    color: '#1a1a1a',
+    color: 'var(--txt)',
     CustomIcon: null,
   },
   {
@@ -102,10 +102,11 @@ export function Contact() {
                     rel="noopener noreferrer"
                     className="soc-btn"
                     onMouseEnter={e => {
+                      const isVar = color.startsWith('var(')
                       e.currentTarget.style.borderColor = color
-                      e.currentTarget.style.color = color
-                      e.currentTarget.style.background = color === 'var(--acc)'
-                        ? 'color-mix(in srgb, var(--acc) 12%, transparent)'
+                      e.currentTarget.style.color = isVar ? color : color
+                      e.currentTarget.style.background = isVar
+                        ? `color-mix(in srgb, ${color} 12%, transparent)`
                         : `${color}18`
                     }}
                     onMouseLeave={e => {
