@@ -14,7 +14,7 @@ const PROJECTS = [
     ],
     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/fake-job-posting-ml',
-    demo: '#', // replace with your deployed URL
+    demo: 'https://your-fake-job-detector.vercel.app', // ← replace
   },
   {
     title: 'AI Content Detector',
@@ -42,7 +42,7 @@ const PROJECTS = [
     ],
     img: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/Sketchline-whiteboard',
-    demo: '#', // replace with your deployed URL
+    demo: 'https://your-sketchline.vercel.app', // ← replace
   },
   {
     title: 'ProjectScope',
@@ -56,7 +56,7 @@ const PROJECTS = [
     ],
     img: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/ProjectScope',
-    demo: '#', // replace with your deployed URL
+    demo: 'https://your-projectscope.vercel.app', // ← replace
   },
 ]
 
@@ -67,7 +67,6 @@ export function Projects() {
       className="sec slash-bg-alt screentone"
       style={{ paddingTop: '6vw', paddingBottom: '6vw', position: 'relative', overflow: 'hidden' }}
     >
-      {/* Kanji — 仕事 (work / mission) */}
       <span className="kanji-bg" aria-hidden="true" style={{ right: '-1%', top: '2%', lineHeight: 1.05 }}>
         仕<br />事
       </span>
@@ -99,17 +98,11 @@ export function Projects() {
                 </ul>
               </div>
 
-              {/* Footer — two buttons */}
+              {/* Footer — Live Demo + GitHub */}
               <div className="mp-foot">
-                {p.demo !== '#' ? (
-                  <a href={p.demo} target="_blank" rel="noopener noreferrer" className="mp-demo-link f-mono">
-                    <ExternalLink size={12} /> Live Demo
-                  </a>
-                ) : (
-                  <span className="mp-demo-link mp-demo-disabled f-mono" aria-disabled>
-                    <ExternalLink size={12} /> Demo
-                  </span>
-                )}
+                <a href={p.demo} target="_blank" rel="noopener noreferrer" className="mp-demo-link f-mono">
+                  <ExternalLink size={12} /> Live Demo
+                </a>
                 <a href={p.github} target="_blank" rel="noopener noreferrer" className="mp-gh-link f-mono">
                   <Github size={12} /> GitHub
                 </a>
@@ -118,7 +111,7 @@ export function Projects() {
           ))}
         </div>
 
-        {/* View all CTA — no label text */}
+        {/* View all CTA */}
         <div className="proj-cta-row reveal delay-2" style={{ justifyContent: 'flex-end' }}>
           <a
             href="https://github.com/sugumaran-nix"
