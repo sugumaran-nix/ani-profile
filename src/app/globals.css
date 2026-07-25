@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ──────────────────────────────────────────────
+   LIGHT THEME (Naruto)
+   ────────────────────────────────────────────── */
+:root,
+.light {
+  --bg-primary: #FFFDF0;
+  --bg-secondary: #F5EED8;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFF8E8;
+  --border-color: #D4A96A;
+  --border-subtle: #EDD9A3;
+  --text-primary: #1A1A1A;
+  --text-secondary: #3D3D3D;
+  --text-muted: #6B6B6B;
+  --accent-primary: #E14011;
+  --accent-secondary: #FDD501;
+  --accent-tertiary: #024DA1;
+  --scrollbar-track: #F5EED8;
+  --scrollbar-thumb: #E14011;
+  --cursor-color: #E14011;
+  --shadow-card: 0 4px 20px rgba(225,64,17,0.1), 0 1px 4px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 40px rgba(225,64,17,0.2), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ──────────────────────────────────────────────
+   DARK THEME (Aizen) — brighter, saturated
+   ────────────────────────────────────────────── */
+.dark {
+  --bg-primary: #0A0818;
+  --bg-secondary: #130F2A;
+  --bg-card: #1E1840;
+  --bg-card-hover: #251E4F;
+  --border-color: #5B46A8;
+  --border-subtle: #3D2F7A;
+  --text-primary: #EDE9FE;
+  --text-secondary: #C4B5FD;
+  --text-muted: #9B8EC4;
+  --accent-primary: #A78BFA;
+  --accent-secondary: #2DD4BF;
+  --accent-tertiary: #F87171;
+  --scrollbar-track: #130F2A;
+  --scrollbar-thumb: #8B5CF6;
+  --shadow-card: 0 4px 20px rgba(139,92,246,0.15), 0 1px 4px rgba(0,0,0,0.3);
+  --shadow-hover: 0 8px 40px rgba(139,92,246,0.35), 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* ──────────────────────────────────────────────
+   BASE STYLES
+   ────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-primary);
+  color: white;
+}
+
+/* ──────────────────────────────────────────────
+   REUSABLE UTILITIES
+   ────────────────────────────────────────────── */
+.section-title {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+.card-base {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+}
+.card-base:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-color);
+}
+
+.accent-text {
+  color: var(--accent-primary);
+}
+
+/* Light mode ink divider */
+.light .ink-divider {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #E14011, #FDD501, #E14011, transparent);
+  overflow: hidden;
+}
+
+/* Dark mode reiatsu divider */
+.dark .ink-divider {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8B5CF6, #2DD4BF, #8B5CF6, transparent);
+  overflow: hidden;
+}
+
+/* Glow text for dark mode */
+.dark .glow-text {
+  text-shadow: 0 0 20px rgba(167,139,250,0.6), 0 0 40px rgba(167,139,250,0.3);
+}
+
+/* Warm text for light mode */
+.light .glow-text {
+  text-shadow: 2px 2px 0px rgba(253,213,1,0.5);
+}
+
+/* ──────────────────────────────────────────────
+   SKILL BAR ANIMATION
+   ────────────────────────────────────────────── */
+.skill-bar-fill {
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ──────────────────────────────────────────────
+   PARTICLE CANVAS
+   ────────────────────────────────────────────── */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ──────────────────────────────────────────────
+   THEME TRANSITION OVERLAY
+   ────────────────────────────────────────────── */
+.theme-transitioning * {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+}
+
+/* ──────────────────────────────────────────────
+   FOCUS STYLES
+   ────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────
+   PROJECT CARD FLIP
+   ────────────────────────────────────────────── */
+.flip-card { perspective: 1000px; }
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+}
+.flip-card-back { transform: rotateY(180deg); }
+
+/* ──────────────────────────────────────────────
+   SHIMMER EFFECT
+   ────────────────────────────────────────────── */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary) 0%,
+    var(--accent-secondary) 50%,
+    var(--accent-primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ──────────────────────────────────────────────
+   NAV BLUR
+   ────────────────────────────────────────────── */
+.nav-blur {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
