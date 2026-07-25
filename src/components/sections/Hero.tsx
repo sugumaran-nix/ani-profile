@@ -228,7 +228,7 @@ export function Hero() {
           </p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             {PROFILE_SOCIALS.map(({ Icon, href, label }) => (
-              
+              <a
                 key={label}
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
