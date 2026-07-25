@@ -647,6 +647,9 @@ body {
   position: relative; overflow: hidden;
   background: var(--surface);
 }
+.dark .skill-panel {
+  background: color-mix(in srgb, var(--panel-color, var(--acc)) 4%, var(--surface));
+}
 .skill-panel:last-child { border-right: none; }
 @media (max-width: 900px) {
   .skill-panel:nth-child(2n) { border-right: none; }
@@ -679,6 +682,11 @@ body {
   color: var(--t2);
   transition: border-color 0.15s, color 0.15s, background 0.15s, transform 0.15s;
   cursor: default;
+}
+.dark .stag {
+  background: color-mix(in srgb, var(--panel-color, var(--acc)) 10%, #1a1530);
+  border-color: color-mix(in srgb, var(--panel-color, var(--acc)) 40%, var(--txt));
+  color: #F0EBFF;
 }
 .stag:hover {
   border-color: var(--panel-color, var(--acc));
