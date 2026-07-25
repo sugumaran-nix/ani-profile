@@ -35,7 +35,7 @@ const PROJECTS = [
     c1: '#66bbff', c2: '#4488ff', c3: '#aa22ff',
   },
   {
-    title: 'Sketchline — Whiteboard',
+    title: 'Sketchline',
     category: 'Real-time',
     summary: 'Multiplayer collaborative whiteboard with custom WebSocket protocol.',
     tags: ['FastAPI', 'WebSockets', 'Next.js', 'TypeScript', 'Canvas'],
@@ -68,57 +68,42 @@ const PROJECTS = [
 
 function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
   return (
-    <div className="proj-wrap">
-      <div className="content">
-
-        {/* BACK — visible after hover (starts face-down) */}
-        <div className="proj-back">
-          <div className="proj-back-inner">
-            <p style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--accent)', marginBottom: 4 }}>
-              KEY RESULTS
-            </p>
-            <ul style={{ listStyle: 'none', width: '100%' }}>
-              {p.highlights.map(h => (
-                <li key={h} style={{ display: 'flex', gap: 8, fontSize: 12, color: '#ccc', marginBottom: 7, lineHeight: 1.5 }}>
-                  <span style={{ color: 'var(--accent)', flexShrink: 0 }}>▸</span>
-                  {h}
-                </li>
-              ))}
-            </ul>
-            <a
-              href={p.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                marginTop: 6, padding: '7px 16px', borderRadius: 8,
-                background: 'var(--accent)', color: '#fff',
-                fontSize: 12, fontWeight: 700, textDecoration: 'none',
-              }}
-            >
-              <Github size={13} /> GitHub
-            </a>
-          </div>
+    <div className="proj-card">
+      {/* Colourful header */}
+      <div className="proj-card-header" style={{ background: '#111' }}>
+        <div className="proj-card-circle" style={{ background: p.c1, width: 100, height: 100, top: -10, left: -10 }} />
+        <div className="proj-card-circle" style={{ background: p.c2, width: 140, height: 140, top: -30, left: 40, animationDelay: '-800ms' }} />
+        <div className="proj-card-circle" style={{ background: p.c3, width: 60, height: 60, top: -20, right: 20, animationDelay: '-1500ms' }} />
+        <div className="proj-card-overlay">
+          <span className="proj-card-badge">{p.category}</span>
         </div>
+      </div>
 
-        {/* FRONT — default visible state (rotated 180 so it shows before hover) */}
-        <div className="proj-front">
-          {/* Floating blur circles */}
-          <div className="pf-img">
-            <div className="circle" style={{ background: p.c1 }} />
-            <div className="circle c2" style={{ background: p.c2, left: 50, top: 0, width: 150, height: 150, animationDelay: '-800ms' }} />
-            <div className="circle c3" style={{ background: p.c3, left: 160, top: -80, width: 30, height: 30, animationDelay: '-1800ms' }} />
-          </div>
-          {/* Content overlay */}
-          <div className="pf-content">
-            <span className="pf-badge">{p.category}</span>
-            <div className="pf-desc">
-              <p className="pf-title">{p.title}</p>
-              <p className="pf-sub">{p.summary}</p>
-            </div>
-          </div>
-        </div>
+      {/* Body */}
+      <div className="proj-card-body">
+        <p className="proj-card-title">{p.title}</p>
+        <p className="proj-card-summary">{p.summary}</p>
+        <ul className="proj-card-highlights">
+          {p.highlights.map(h => (
+            <li key={h}>
+              <span>▸</span>
+              {h}
+            </li>
+          ))}
+        </ul>
+      </div>
 
+      {/* Footer with GitHub link */}
+      <div className="proj-card-footer">
+        <a
+          href={p.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="proj-card-link"
+        >
+          <Github size={13} />
+          GitHub
+        </a>
       </div>
     </div>
   )
@@ -132,19 +117,16 @@ export function Projects() {
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
 
         {/* Header */}
-        <motion.div {...fade()} style={{ marginBottom: 16 }}>
+        <motion.div {...fade()} style={{ marginBottom: 48 }}>
           <span className="s-label">Projects</span>
           <h2 className="f-display" style={{ fontSize: 'clamp(32px,5vw,48px)', fontWeight: 700, color: 'var(--txt)', lineHeight: 1.15 }}>
             Shipped Work
           </h2>
           <div className="divider" style={{ width: 80, marginTop: 14, marginLeft: 0 }} />
         </motion.div>
-        <motion.p {...fade(0.08)} style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--txt-3)', marginBottom: 40 }}>
-          Hover each card to reveal highlights
-        </motion.p>
 
         {/* Cards grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28, marginBottom: 48 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginBottom: 48 }}>
           {PROJECTS.map((p, i) => (
             <motion.div key={p.title} {...fade(i * 0.09)}>
               <ProjectCard p={p} />

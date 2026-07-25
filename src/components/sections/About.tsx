@@ -4,9 +4,9 @@ import { useRef } from 'react'
 import { MapPin, Briefcase, Globe } from 'lucide-react'
 
 const INFO = [
-  { icon: Briefcase, label: 'Focus',    value: 'AI/ML · Backend · Full Stack' },
-  { icon: MapPin,    label: 'Location', value: 'Tamil Nadu, India · Remote-ready' },
-  { icon: Globe,     label: 'Languages',value: 'Tamil (Native) · English (Professional)' },
+  { icon: Briefcase, label: 'Focus',     value: 'AI/ML · Backend · Full Stack' },
+  { icon: MapPin,    label: 'Location',  value: 'Tamil Nadu, India · Remote-ready' },
+  { icon: Globe,     label: 'Languages', value: 'Tamil (Native) · English (Professional)' },
 ]
 
 const EDU = [
@@ -24,7 +24,6 @@ export function About() {
     <section id="about" ref={ref} style={{ background: 'var(--bg-alt)', padding: '96px 0' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
 
-        {/* Header */}
         <motion.div {...fade()} style={{ marginBottom: 56 }}>
           <span className="s-label">About</span>
           <h2 className="f-display" style={{ fontSize: 'clamp(32px,5vw,48px)', fontWeight: 700, color: 'var(--txt)', lineHeight: 1.15 }}>
@@ -35,7 +34,7 @@ export function About() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48, alignItems: 'start' }}>
 
-          {/* Left — bio + info */}
+          {/* Left — bio */}
           <motion.div {...fade(0.08)}>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--txt-2)', marginBottom: 20 }}>
               I build end-to-end systems — raw data through model training, REST API
@@ -59,18 +58,18 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* Right — education timeline */}
+          {/* Right — education */}
           <motion.div {...fade(0.16)}>
             <span className="s-label">Education</span>
 
             <div style={{ position: 'relative', paddingLeft: 28 }}>
-              {/* Vertical line */}
+              {/* Timeline line */}
               <motion.div
                 initial={{ scaleY: 0 }}
                 animate={inView ? { scaleY: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 style={{
-                  position: 'absolute', left: 7, top: 8, bottom: 8, width: 1.5,
+                  position: 'absolute', left: 7, top: 8, bottom: 8, width: 2,
                   background: 'linear-gradient(180deg, var(--accent), var(--accent-2))',
                   transformOrigin: 'top',
                 }}
@@ -80,11 +79,12 @@ export function About() {
                 <motion.div key={e.degree} {...fade(0.2 + i * 0.14)} style={{ position: 'relative', marginBottom: i === 0 ? 28 : 0 }}>
                   {/* Node */}
                   <div style={{
-                    position: 'absolute', left: -28, top: 6,
-                    width: 15, height: 15, borderRadius: '50%',
+                    position: 'absolute', left: -28, top: 8,
+                    width: 16, height: 16, borderRadius: '50%',
                     background: e.current ? 'var(--accent)' : 'var(--surface)',
-                    border: '2px solid var(--accent)',
+                    border: '2.5px solid var(--accent)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    zIndex: 1,
                   }}>
                     {e.current && (
                       <motion.div
@@ -96,16 +96,17 @@ export function About() {
                   </div>
 
                   <div className="card" style={{ padding: '16px 18px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
                       <span className="f-mono" style={{ fontSize: 11, color: 'var(--txt-3)' }}>{e.period}</span>
-                      <span className="f-display" style={{ fontSize: 16, fontWeight: 700, color: 'var(--accent)' }}>{e.score}</span>
+                      <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--accent)', fontFamily: 'var(--font-mono)' }}>{e.score}</span>
                     </div>
-                    <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', marginBottom: 3 }}>{e.degree}</p>
-                    <p style={{ fontSize: 12, color: 'var(--txt-3)' }}>{e.uni}</p>
+                    <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>{e.degree}</p>
+                    <p style={{ fontSize: 12, color: 'var(--txt-3)', lineHeight: 1.5 }}>{e.uni}</p>
                     {e.current && (
                       <span style={{
-                        display: 'inline-block', marginTop: 8, fontSize: 9, fontFamily: 'var(--font-mono)',
-                        padding: '2px 8px', borderRadius: 20, background: 'var(--accent)', color: '#fff', letterSpacing: '0.12em',
+                        display: 'inline-block', marginTop: 10, fontSize: 9, fontFamily: 'var(--font-mono)',
+                        padding: '3px 10px', borderRadius: 20,
+                        background: 'var(--accent)', color: '#fff', letterSpacing: '0.12em',
                       }}>CURRENT</span>
                     )}
                   </div>

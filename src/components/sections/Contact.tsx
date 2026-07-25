@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { BurstButton } from '@/components/ui/BurstButton'
 import { Send } from 'lucide-react'
 
-/* Social buttons — exact port of provided component */
 function SocialButtons() {
   const btns = [
     { pos: 'tl', href: 'https://linkedin.com/in/sugumaran-nix', label: 'LinkedIn', hoverBg: '#0077B5',
@@ -30,7 +29,6 @@ function SocialButtons() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {/* Row 1: tl, tr */}
       <div style={{ display: 'flex', gap: 8 }}>
         {btns.slice(0, 2).map(b => (
           <a key={b.pos} href={b.href} target="_blank" rel="noopener noreferrer" aria-label={b.label}
@@ -42,7 +40,6 @@ function SocialButtons() {
           </a>
         ))}
       </div>
-      {/* Row 2: bl, br */}
       <div style={{ display: 'flex', gap: 8 }}>
         {btns.slice(2).map(b => (
           <a key={b.pos} href={b.href} target={b.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" aria-label={b.label}
@@ -60,13 +57,6 @@ function SocialButtons() {
 
 const fade = (delay = 0) => ({ initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, transition: { duration: 0.55, delay }, viewport: { once: true, margin: '-60px' } })
 
-const inputStyle: React.CSSProperties = {
-  width: '100%', padding: '12px 14px', borderRadius: 10,
-  border: '1px solid var(--border)', background: 'var(--bg-alt)',
-  color: 'var(--txt)', fontSize: 14, fontFamily: 'var(--font-body)',
-  outline: 'none', transition: 'border-color 0.2s',
-}
-
 export function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
 
@@ -81,7 +71,6 @@ export function Contact() {
     <section id="contact" style={{ background: 'var(--bg)', padding: '96px 0' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
 
-        {/* Header */}
         <motion.div {...fade()} style={{ marginBottom: 56 }}>
           <span className="s-label">Contact</span>
           <h2 className="f-display" style={{ fontSize: 'clamp(32px,5vw,48px)', fontWeight: 700, color: 'var(--txt)', lineHeight: 1.15 }}>
@@ -90,38 +79,35 @@ export function Contact() {
           <div className="divider" style={{ width: 80, marginTop: 14, marginLeft: 0 }} />
         </motion.div>
 
-        {/* Two-column: form LEFT, social RIGHT */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 56, alignItems: 'center' }}>
 
-          {/* LEFT — Form */}
+          {/* Form */}
           <motion.div {...fade(0.08)}>
             <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               <div>
                 <label style={{ display: 'block', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--txt-3)', marginBottom: 6 }}>Your Name</label>
-                <input type="text" required placeholder="Your full name" value={form.name}
+                <input
+                  type="text" required placeholder="Your full name" value={form.name}
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  style={inputStyle}
-                  onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
-                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
+                  className="contact-input"
                 />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--txt-3)', marginBottom: 6 }}>Email</label>
-                <input type="email" required placeholder="your@email.com" value={form.email}
+                <input
+                  type="email" required placeholder="your@email.com" value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                  style={inputStyle}
-                  onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
-                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
+                  className="contact-input"
                 />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: 11, fontFamily: 'var(--font-mono)', color: 'var(--txt-3)', marginBottom: 6 }}>Message</label>
-                <textarea required rows={5} placeholder="What would you like to discuss?"
+                <textarea
+                  required rows={5} placeholder="What would you like to discuss?"
                   value={form.message}
                   onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                  style={{ ...inputStyle, resize: 'none' }}
-                  onFocus={e => (e.target.style.borderColor = 'var(--accent)')}
-                  onBlur={e => (e.target.style.borderColor = 'var(--border)')}
+                  className="contact-input"
+                  style={{ resize: 'none' }}
                 />
               </div>
               <BurstButton as="button" type="submit">
@@ -130,11 +116,11 @@ export function Contact() {
             </form>
           </motion.div>
 
-          {/* RIGHT — social buttons inside a card */}
+          {/* Social card */}
           <motion.div {...fade(0.16)}>
             <div className="card" style={{ padding: '36px 32px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 28, textAlign: 'center' }}>
               <div>
-                <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--txt-2)', marginBottom: 6 }}>
+                <p style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', marginBottom: 6 }}>
                   Open to AI/ML, backend, full-stack, and NLP roles.
                 </p>
                 <p style={{ fontSize: 13, color: 'var(--txt-3)' }}>
