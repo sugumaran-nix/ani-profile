@@ -1,124 +1,82 @@
 'use client'
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const GROUPS = [
   {
     label: 'AI & Machine Learning',
+    blob: '#E14011',
     skills: ['Python', 'Scikit-learn', 'NLP', 'TF-IDF', 'BERT', 'Hugging Face', 'Explainable AI', 'Prompt Engineering', 'RLHF'],
-    blobColor: 'var(--accent)',
   },
   {
     label: 'Backend & APIs',
+    blob: '#024DA1',
     skills: ['FastAPI', 'Flask', 'REST APIs', 'WebSockets', 'MySQL', 'MongoDB', 'SQLite'],
-    blobColor: 'var(--accent-2)',
   },
   {
     label: 'Frontend',
+    blob: '#7C3AED',
     skills: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML5 Canvas', 'JavaScript'],
-    blobColor: 'var(--accent-3)',
   },
   {
     label: 'Tools & Platforms',
+    blob: '#D97706',
     skills: ['Git', 'GitHub', 'Linux', 'Jupyter', 'Vercel', 'Railway', 'VS Code', 'Labelbox', 'CVAT'],
-    blobColor: 'var(--accent)',
   },
 ]
 
-const BlobCard = styled.div<{ $blob: string }>`
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  &:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
-
-  .bg {
-    position: absolute;
-    top: 5px; left: 5px;
-    right: 5px; bottom: 5px;
-    z-index: 2;
-    border-radius: 10px;
-    overflow: hidden;
-    outline: 1.5px solid color-mix(in srgb, var(--border-color) 40%, transparent);
-  }
-  .blob {
-    position: absolute;
-    z-index: 1;
-    top: 50%; left: 50%;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    background-color: ${p => p.$blob};
-    opacity: 0.85;
-    filter: blur(14px);
-    animation: blob-bounce 5s infinite ease;
-  }
-  .content {
-    position: relative;
-    z-index: 3;
-    padding: 20px;
-  }
-`
+const fade = (delay = 0) => ({ initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, transition: { duration: 0.55, delay }, viewport: { once: true, margin: '-60px' } })
 
 export function Skills() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
   return (
-    <section id="skills" ref={ref} className="py-24" style={{ background: 'var(--bg-primary)' }}>
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="skills" style={{ background: 'var(--bg)', padding: '96px 0' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
 
-        <motion.div
-          initial={{ y: 24, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <p className="font-mono text-xs tracking-[0.25em] mb-2" style={{ color: 'var(--accent)' }}>
-            SKILLS
-          </p>
-          <h2 className="font-display text-4xl font-bold" style={{ color: 'var(--text-primary)' }}>
+        {/* Header */}
+        <motion.div {...fade()} style={{ marginBottom: 56 }}>
+          <span className="s-label">Skills</span>
+          <h2 className="f-display" style={{ fontSize: 'clamp(32px,5vw,48px)', fontWeight: 700, color: 'var(--txt)', lineHeight: 1.15 }}>
             Technical Stack
           </h2>
-          <div className="divider mt-4" style={{ marginLeft: 0 }} />
+          <div className="divider" style={{ width: 80, marginTop: 14, marginLeft: 0 }} />
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
-          {GROUPS.map((group, gIdx) => (
-            <motion.div
-              key={group.label}
-              initial={{ y: 30, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: gIdx * 0.1 }}
-            >
-              <BlobCard $blob={group.blobColor}>
-                <div className="glass bg" />
-                <div className="blob" />
-                <div className="content glass" style={{ minHeight: 200 }}>
-                  <p className="font-display font-bold text-base mb-4" style={{ color: 'var(--text-primary)' }}>
-                    {group.label}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {group.skills.map((skill, sIdx) => (
-                      <motion.span
-                        key={skill}
-                        initial={{ scale: 0.85, opacity: 0 }}
-                        animate={inView ? { scale: 1, opacity: 1 } : {}}
-                        transition={{ delay: gIdx * 0.08 + sIdx * 0.04 + 0.3 }}
-                        className="text-xs px-3 py-1.5 rounded-lg font-medium border"
-                        style={{
-                          background: 'color-mix(in srgb, var(--accent) 8%, transparent)',
-                          borderColor: 'color-mix(in srgb, var(--accent) 25%, transparent)',
-                          color: 'var(--text-secondary)',
-                        }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
+        {/* 2×2 grid of blob cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24 }}>
+          {GROUPS.map((g, gi) => (
+            <motion.div key={g.label} {...fade(gi * 0.1)} className="blob-card">
+              {/* Glass inner layer */}
+              <div className="bc-bg" />
+              {/* Animated blob */}
+              <div className="bc-blob" style={{ background: g.blob }} />
+              {/* Content sits above blob via z-index:3 */}
+              <div className="bc-content">
+                <p className="f-display" style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
+                  {g.label}
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {g.skills.map((sk, si) => (
+                    <motion.span
+                      key={sk}
+                      initial={{ opacity: 0, scale: 0.88 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: gi * 0.07 + si * 0.04 + 0.2 }}
+                      viewport={{ once: true }}
+                      style={{
+                        fontSize: 11, fontFamily: 'var(--font-mono)',
+                        padding: '5px 11px', borderRadius: 8,
+                        border: '1px solid color-mix(in srgb, var(--accent) 28%, transparent)',
+                        background: 'color-mix(in srgb, var(--accent) 7%, transparent)',
+                        color: 'var(--txt-2)',
+                        transition: 'transform 0.2s',
+                        cursor: 'default',
+                      }}
+                      whileHover={{ scale: 1.06 }}
+                    >
+                      {sk}
+                    </motion.span>
+                  ))}
                 </div>
-              </BlobCard>
+              </div>
             </motion.div>
           ))}
         </div>

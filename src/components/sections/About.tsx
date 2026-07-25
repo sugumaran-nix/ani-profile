@@ -1,169 +1,112 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { MapPin, Briefcase, Globe, GraduationCap } from 'lucide-react'
-
-const EDUCATION = [
-  {
-    period: 'Jun 2024 – Jul 2026',
-    degree: 'Master of Computer Applications',
-    institution: 'Anna University — Sri Venkateshwara College, Coimbatore',
-    score: '80%',
-    current: true,
-  },
-  {
-    period: 'Jul 2021 – May 2024',
-    degree: 'Bachelor of Computer Applications',
-    institution: 'Bharathiar University — Government Arts & Science College',
-    score: '83.71%',
-    current: false,
-  },
-]
+import { MapPin, Briefcase, Globe } from 'lucide-react'
 
 const INFO = [
-  { icon: Briefcase, label: 'Role', value: 'AI/ML · Full Stack · Python' },
-  { icon: MapPin,    label: 'Location', value: 'Tamil Nadu · Remote-ready' },
-  { icon: Globe,     label: 'Languages', value: 'Tamil (Native) · English (Professional)' },
+  { icon: Briefcase, label: 'Focus',    value: 'AI/ML · Backend · Full Stack' },
+  { icon: MapPin,    label: 'Location', value: 'Tamil Nadu, India · Remote-ready' },
+  { icon: Globe,     label: 'Languages',value: 'Tamil (Native) · English (Professional)' },
 ]
+
+const EDU = [
+  { period: 'Jun 2024 – Jul 2026', degree: 'MCA', uni: 'Anna University — Sri Venkateshwara College', score: '80%', current: true },
+  { period: 'Jul 2021 – May 2024', degree: 'BCA', uni: 'Bharathiar University — Govt. Arts & Science College', score: '83.71%', current: false },
+]
+
+const fade = (delay = 0) => ({ initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, transition: { duration: 0.55, delay }, viewport: { once: true, margin: '-80px' } })
 
 export function About() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="about" ref={ref} className="py-24" style={{ background: 'var(--bg-secondary)' }}>
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="about" ref={ref} style={{ background: 'var(--bg-alt)', padding: '96px 0' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
 
         {/* Header */}
-        <motion.div
-          initial={{ y: 24, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
-        >
-          <p className="font-mono text-xs tracking-[0.25em] mb-2" style={{ color: 'var(--accent)' }}>
-            ABOUT
-          </p>
-          <h2 className="font-display text-4xl font-bold" style={{ color: 'var(--text-primary)' }}>
+        <motion.div {...fade()} style={{ marginBottom: 56 }}>
+          <span className="s-label">About</span>
+          <h2 className="f-display" style={{ fontSize: 'clamp(32px,5vw,48px)', fontWeight: 700, color: 'var(--txt)', lineHeight: 1.15 }}>
             Who I Am
           </h2>
-          <div className="divider mt-4" style={{ marginLeft: 0 }} />
+          <div className="divider" style={{ width: 80, marginTop: 14, marginLeft: 0 }} />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 48, alignItems: 'start' }}>
 
-          {/* Left: Bio + info */}
-          <motion.div
-            initial={{ x: -30, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <p className="text-base leading-loose mb-8" style={{ color: 'var(--text-secondary)' }}>
-              I build end-to-end systems — from raw data through model training, REST API deployment, 
-              and into polished frontends. My work spans fraud detection ML, NLP text classification, 
-              real-time WebSocket applications, and React interfaces. Every project I've shipped 
-              is production-deployed and production-tested.
+          {/* Left — bio + info */}
+          <motion.div {...fade(0.08)}>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--txt-2)', marginBottom: 20 }}>
+              I build end-to-end systems — raw data through model training, REST API
+              deployment, and into polished frontends. My work spans fraud-detection ML,
+              NLP text classification, real-time WebSocket applications, and React UIs.
+              Every project I've shipped is production-deployed and battle-tested.
             </p>
-            <p className="text-sm leading-relaxed mb-10" style={{ color: 'var(--text-muted)' }}>
-              Available immediately. Open to AI/ML, backend, full-stack, NLP, and data annotation 
-              roles — anywhere in India or remote.
+            <p style={{ fontSize: 14, lineHeight: 1.75, color: 'var(--txt-3)', marginBottom: 36 }}>
+              Available immediately. Open to AI/ML, backend, full-stack, NLP, and data
+              annotation roles — anywhere in India or remote.
             </p>
 
-            <div className="space-y-3">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {INFO.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={inView ? { x: 0, opacity: 1 } : {}}
-                  transition={{ delay: 0.25 + i * 0.08 }}
-                  className="flex items-center gap-3"
-                >
-                  <item.icon size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
-                  <span className="text-xs font-mono w-20" style={{ color: 'var(--text-muted)' }}>
-                    {item.label}
-                  </span>
-                  <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    {item.value}
-                  </span>
+                <motion.div key={item.label} {...fade(0.12 + i * 0.06)} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+                  <item.icon size={16} style={{ color: 'var(--accent)', marginTop: 2, flexShrink: 0 }} />
+                  <span style={{ fontSize: 12, fontFamily: 'var(--font-mono)', color: 'var(--txt-3)', width: 72, flexShrink: 0 }}>{item.label}</span>
+                  <span style={{ fontSize: 13, color: 'var(--txt-2)' }}>{item.value}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right: Education timeline */}
-          <motion.div
-            initial={{ x: 30, opacity: 0 }}
-            animate={inView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <p className="font-mono text-xs tracking-[0.2em] mb-6" style={{ color: 'var(--text-muted)' }}>
-              EDUCATION
-            </p>
-            <div className="relative pl-8">
+          {/* Right — education timeline */}
+          <motion.div {...fade(0.16)}>
+            <span className="s-label">Education</span>
+
+            <div style={{ position: 'relative', paddingLeft: 28 }}>
               {/* Vertical line */}
               <motion.div
                 initial={{ scaleY: 0 }}
                 animate={inView ? { scaleY: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="absolute left-2.5 top-2 bottom-2 w-px origin-top"
-                style={{ background: 'linear-gradient(180deg, var(--accent), var(--accent-2))' }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{
+                  position: 'absolute', left: 7, top: 8, bottom: 8, width: 1.5,
+                  background: 'linear-gradient(180deg, var(--accent), var(--accent-2))',
+                  transformOrigin: 'top',
+                }}
               />
 
-              {EDUCATION.map((edu, i) => (
-                <motion.div
-                  key={edu.degree}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.45 + i * 0.15 }}
-                  className={`relative mb-8 last:mb-0`}
-                >
+              {EDU.map((e, i) => (
+                <motion.div key={e.degree} {...fade(0.2 + i * 0.14)} style={{ position: 'relative', marginBottom: i === 0 ? 28 : 0 }}>
                   {/* Node */}
-                  <div
-                    className="absolute -left-5 top-1 w-4 h-4 rounded-full border-2 flex items-center justify-center"
-                    style={{
-                      background: edu.current ? 'var(--accent)' : 'var(--bg-card)',
-                      borderColor: 'var(--accent)',
-                    }}
-                  >
-                    {edu.current && (
+                  <div style={{
+                    position: 'absolute', left: -28, top: 6,
+                    width: 15, height: 15, borderRadius: '50%',
+                    background: e.current ? 'var(--accent)' : 'var(--surface)',
+                    border: '2px solid var(--accent)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    {e.current && (
                       <motion.div
-                        animate={{ scale: [1, 1.5, 1], opacity: [1, 0.4, 1] }}
+                        animate={{ scale: [1, 1.6, 1], opacity: [1, 0.3, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
-                        className="w-1.5 h-1.5 rounded-full"
-                        style={{ background: '#fff' }}
+                        style={{ width: 5, height: 5, borderRadius: '50%', background: '#fff' }}
                       />
                     )}
                   </div>
 
-                  <div
-                    className="rounded-xl p-5 border"
-                    style={{
-                      background: 'var(--bg-card)',
-                      borderColor: 'var(--border-subtle)',
-                      boxShadow: 'var(--shadow-card)',
-                    }}
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <p className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
-                        {edu.period}
-                      </p>
-                      <span className="font-display font-bold text-sm" style={{ color: 'var(--accent)' }}>
-                        {edu.score}
-                      </span>
+                  <div className="card" style={{ padding: '16px 18px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+                      <span className="f-mono" style={{ fontSize: 11, color: 'var(--txt-3)' }}>{e.period}</span>
+                      <span className="f-display" style={{ fontSize: 16, fontWeight: 700, color: 'var(--accent)' }}>{e.score}</span>
                     </div>
-                    <p className="font-semibold text-sm mb-1" style={{ color: 'var(--text-primary)' }}>
-                      {edu.degree}
-                    </p>
-                    <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                      {edu.institution}
-                    </p>
-                    {edu.current && (
-                      <span
-                        className="inline-block mt-2 text-[10px] font-mono px-2 py-0.5 rounded-full"
-                        style={{ background: 'var(--accent)', color: '#fff' }}
-                      >
-                        CURRENT
-                      </span>
+                    <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', marginBottom: 3 }}>{e.degree}</p>
+                    <p style={{ fontSize: 12, color: 'var(--txt-3)' }}>{e.uni}</p>
+                    {e.current && (
+                      <span style={{
+                        display: 'inline-block', marginTop: 8, fontSize: 9, fontFamily: 'var(--font-mono)',
+                        padding: '2px 8px', borderRadius: 20, background: 'var(--accent)', color: '#fff', letterSpacing: '0.12em',
+                      }}>CURRENT</span>
                     )}
                   </div>
                 </motion.div>

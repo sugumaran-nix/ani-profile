@@ -1,86 +1,109 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 import { FlipFadeText } from '@/components/ui/FlipFadeText'
 import { BurstButton } from '@/components/ui/BurstButton'
 import { GooeyButton } from '@/components/ui/GooeyButton'
-import { useTheme } from 'next-themes'
-import { Github, Mail } from 'lucide-react'
+import { Download, Mail } from 'lucide-react'
 
-function Rings() {
+function Ring({ size, speed, reverse }: { size: number; speed: number; reverse?: boolean }) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-      {[180, 320, 460].map((size, i) => (
-        <motion.div
-          key={size}
-          className="absolute rounded-full border"
-          style={{
-            width: size, height: size,
-            borderColor: `color-mix(in srgb, var(--accent) ${12 - i * 3}%, transparent)`,
-          }}
-          animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-          transition={{ duration: 22 + i * 8, repeat: Infinity, ease: 'linear' }}
-        />
-      ))}
-      <motion.div
-        className="absolute rounded-full"
-        animate={{ scale: [1, 1.12, 1], opacity: [0.25, 0.5, 0.25] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          width: 180, height: 180,
-          background: 'radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent) 0%, transparent 70%)',
-        }}
-      />
-    </div>
+    <motion.div
+      aria-hidden="true"
+      animate={{ rotate: reverse ? -360 : 360 }}
+      transition={{ duration: speed, repeat: Infinity, ease: 'linear' }}
+      style={{
+        position: 'absolute',
+        width: size, height: size,
+        borderRadius: '50%',
+        border: '1px solid color-mix(in srgb, var(--accent) 12%, transparent)',
+        pointerEvents: 'none',
+      }}
+    />
   )
 }
 
 export function Hero() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === 'dark'
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-14"
-      style={{ background: 'var(--bg-primary)' }}
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'var(--bg)',
+        /* critical: start content BELOW the 52px navbar */
+        paddingTop: 52,
+      }}
     >
-      {/* Background radial */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: isDark
-            ? 'radial-gradient(ellipse at 30% 60%, rgba(59,11,69,0.35) 0%, transparent 55%), radial-gradient(ellipse at 75% 25%, rgba(45,212,191,0.08) 0%, transparent 50%)'
-            : 'radial-gradient(ellipse at 30% 60%, rgba(253,213,1,0.18) 0%, transparent 55%), radial-gradient(ellipse at 75% 25%, rgba(225,64,17,0.08) 0%, transparent 50%)',
-        }}
-      />
+      {/* Ambient radial gradient */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: isDark
+          ? 'radial-gradient(ellipse 60% 50% at 20% 55%, rgba(59,11,69,0.4) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 25%, rgba(45,212,191,0.07) 0%, transparent 60%)'
+          : 'radial-gradient(ellipse 60% 50% at 25% 55%, rgba(253,213,1,0.2) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 25%, rgba(225,64,17,0.07) 0%, transparent 60%)',
+      }} />
 
-      <Rings />
+      {/* Decorative rings — centered behind content */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
+        <Ring size={220} speed={24} />
+        <Ring size={380} speed={36} reverse />
+        <Ring size={540} speed={52} />
+        {/* Soft glow orb */}
+        <motion.div
+          animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            position: 'absolute', width: 200, height: 200, borderRadius: '50%',
+            background: 'radial-gradient(circle, color-mix(in srgb, var(--accent) 35%, transparent) 0%, transparent 70%)',
+          }}
+        />
+      </div>
 
+      {/* Main content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-10 max-w-3xl mx-auto px-6 text-center"
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          position: 'relative', zIndex: 1,
+          maxWidth: 680, width: '100%',
+          padding: '0 24px',
+          textAlign: 'center',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0,
+        }}
       >
-        {/* Name */}
+        {/* Name — single line, never wraps */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          className="f-display"
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display text-6xl sm:text-8xl font-black tracking-tight mb-4"
-          style={{ color: 'var(--text-primary)' }}
+          style={{
+            fontSize: 'clamp(52px, 10vw, 96px)',
+            fontWeight: 900,
+            lineHeight: 1,
+            whiteSpace: 'nowrap',
+            color: 'var(--txt)',
+            marginBottom: 8,
+          }}
         >
-          Sugumaran
-          <span className="block" style={{ color: 'var(--accent)' }}>S.</span>
+          Sugumaran{' '}
+          <span style={{ color: 'var(--accent)' }}>S.</span>
         </motion.h1>
 
-        {/* Flip fade titles */}
+        {/* Flip-fade role titles */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="mb-2 h-10"
-          style={{ color: 'var(--text-muted)' }}
+          transition={{ delay: 0.28 }}
+          style={{ marginBottom: 28 }}
         >
           <FlipFadeText />
         </motion.div>
@@ -89,48 +112,54 @@ export function Hero() {
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="divider my-8 mx-auto"
+          transition={{ duration: 0.65, delay: 0.38 }}
+          className="divider"
+          style={{ width: 180, marginBottom: 28 }}
         />
 
-        {/* One-line bio */}
+        {/* One-liner bio */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55 }}
-          className="text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-12"
-          style={{ color: 'var(--text-muted)' }}
+          transition={{ delay: 0.45 }}
+          style={{
+            fontSize: 'clamp(14px, 2vw, 16px)',
+            color: 'var(--txt-3)',
+            lineHeight: 1.75,
+            maxWidth: 520,
+            marginBottom: 40,
+          }}
         >
           MCA graduate building production-grade AI systems and full-stack applications.
           Python-first. Deployed and available immediately.
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTA row */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65 }}
-          className="flex flex-wrap gap-5 justify-center"
+          transition={{ delay: 0.55 }}
+          style={{ display: 'flex', gap: 20, flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}
         >
           <BurstButton href="/cv.pdf" download>
+            <Download size={15} />
             Download CV
           </BurstButton>
-          <GooeyButton
-            href="#contact"
-            color={isDark ? '#A78BFA' : '#E14011'}
-          >
-            <Mail size={15} /> Contact Me
+          <GooeyButton href="#contact">
+            <Mail size={15} />
+            Contact Me
           </GooeyButton>
         </motion.div>
       </motion.div>
 
-      {/* Scroll nudge */}
+      {/* Scroll line */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+        aria-hidden="true"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
-        <div className="w-px h-10 rounded-full" style={{ background: 'linear-gradient(180deg, var(--accent), transparent)' }} />
+        <div style={{ width: 1, height: 44, background: 'linear-gradient(180deg, var(--accent), transparent)', borderRadius: 1 }} />
       </motion.div>
     </section>
   )
