@@ -369,6 +369,8 @@ body {
   justify-content: center;
   padding: 0;
   position: relative; z-index: 2;
+  min-width: 0;
+  width: 100%;
 }
 
 /* Eyebrow — manga chapter label */
@@ -390,15 +392,15 @@ body {
 }
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(52px, 7.5vw, 100px);
+  font-size: clamp(36px, 6vw, 100px);
   font-weight: 900;
   line-height: 0.88;
   color: var(--txt);
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  /* Hard black stroke */
   -webkit-text-stroke: 2px var(--txt);
   paint-order: stroke fill;
+  word-break: break-word;
 }
 .hero-name .accent {
   color: var(--acc);
@@ -412,7 +414,7 @@ body {
   position: absolute;
   top: 6px; left: 6px;
   font-family: var(--font-display);
-  font-size: clamp(52px, 7.5vw, 100px);
+  font-size: clamp(36px, 6vw, 100px);
   font-weight: 900;
   line-height: 0.88;
   color: var(--acc);
@@ -455,7 +457,7 @@ body {
 
 .hero-bio {
   font-size: 14px; line-height: 1.8;
-  color: var(--t2); max-width: 440px;
+  color: var(--t2); max-width: min(440px, 100%);
   margin-bottom: 36px;
   border-left: 2px solid var(--border);
   padding-left: 16px;
@@ -769,17 +771,16 @@ body {
 
 /* Card inner layout — image left (50%), content right (50%) */
 .mp-card {
-  flex-direction: row !important;
+  flex-direction: column !important;
 }
 
-/* Colour splash header — left half of card */
+/* Colour splash header — image on top */
 .mp-header {
-  width: 50%;
+  height: 180px;
+  width: 100%;
   flex-shrink: 0;
   position: relative; overflow: hidden;
   background: #060606;
-  /* fill full card height */
-  align-self: stretch;
 }
 .mp-header img {
   width: 100%; height: 100%;
@@ -788,7 +789,7 @@ body {
 }
 .mp-header-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 8px 12px;
+  padding: 10px 20px;
   background: linear-gradient(0deg, rgba(0,0,0,0.80) 0%, transparent 100%);
   display: flex; justify-content: space-between; align-items: flex-end;
   z-index: 2;
@@ -801,38 +802,25 @@ body {
   border-left: 2px solid var(--acc);
 }
 
-/* Right half — content */
-.mp-body {
-  padding: 16px 18px;
-  flex: 1;
-  display: flex; flex-direction: column; gap: 8px;
-  min-width: 0;
-  border-left: var(--manga-thick) solid var(--txt);
-}
+/* Body — description below image */
+.mp-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
 .mp-title {
   font-family: var(--font-display);
-  font-size: 16px; font-weight: 900;
+  font-size: 18px; font-weight: 900;
   color: var(--txt); line-height: 1.1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.mp-summary { font-size: 12px; color: var(--t2); line-height: 1.6; }
+.mp-summary { font-size: 13px; color: var(--t2); line-height: 1.6; }
 .mp-hits {
-  list-style: none; display: flex; flex-direction: column; gap: 4px;
+  list-style: none; display: flex; flex-direction: column; gap: 5px;
   margin-top: auto;
 }
 .mp-hits li {
-  font-size: 11.5px; color: var(--txt);
-  display: flex; gap: 6px; line-height: 1.4;
+  font-size: 13px; color: var(--txt);
+  display: flex; gap: 7px; line-height: 1.5;
 }
 .mp-hits li::before { content: '▸'; color: var(--acc); flex-shrink: 0; }
-
-/* Mobile — revert to column layout */
-@media (max-width: 700px) {
-  .mp-card { flex-direction: column !important; }
-  .mp-header { width: 100%; height: 160px; align-self: auto; }
-  .mp-body { border-left: none; border-top: var(--manga-thick) solid var(--txt); }
-}
 .dark .mp-hits {
   background: color-mix(in srgb, var(--surface) 85%, var(--acc) 15%);
   border: 1px solid color-mix(in srgb, var(--acc) 25%, transparent);
@@ -842,11 +830,9 @@ body {
 .dark .mp-hits li { color: var(--t2); }
 
 .mp-foot {
-  padding-top: 10px;
-  margin-top: auto;
-  border-top: 2px solid var(--border);
+  padding: 12px 20px;
+  border-top: 2px solid var(--txt);
   display: flex; justify-content: space-between; align-items: center; gap: 8px;
-  flex-wrap: wrap;
 }
 .mp-gh-link,
 .mp-demo-link {
