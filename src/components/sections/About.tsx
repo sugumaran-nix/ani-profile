@@ -2,10 +2,10 @@
 import { MapPin, Briefcase, Globe, Code } from 'lucide-react'
 
 const INFO = [
-  { icon: Briefcase, key: 'Focus',     val: 'AI/ML · Backend · Full Stack'    },
-  { icon: MapPin,    key: 'Location',  val: 'Tamil Nadu, India · Remote-ready' },
-  { icon: Globe,     key: 'Languages', val: 'Tamil (Native) · English (Prof.)' },
-  { icon: Code,      key: 'Degree',    val: 'MCA — Anna University, 2026'      },
+  { icon: Briefcase, key: 'Focus',    val: 'AI/ML · Backend · Full Stack'    },
+  { icon: MapPin,    key: 'Location', val: 'Tamil Nadu, India · Remote-ready' },
+  { icon: Globe,     key: 'Lang',     val: 'Tamil (Native) · English (Prof.)' },
+  { icon: Code,      key: 'Degree',   val: 'MCA — Anna University, 2026'      },
 ]
 
 const EDU = [
@@ -16,10 +16,7 @@ const EDU = [
 export function About() {
   return (
     <section id="about" className="sec slash-bg-alt screentone" style={{ paddingTop: '6vw', paddingBottom: '6vw' }}>
-      {/* Kanji — 者 (person / expert) */}
-      <span className="kanji-bg" aria-hidden="true" style={{ right: '-2%', top: '5%', fontSize: 'clamp(200px,26vw,340px)' }}>
-        者
-      </span>
+      <span className="kanji-bg" aria-hidden="true" style={{ right: '-2%', top: '5%', fontSize: 'clamp(200px,26vw,340px)' }}>者</span>
 
       <div className="sec-inner">
         <div className="sec-head reveal">
@@ -29,17 +26,17 @@ export function About() {
         </div>
 
         <div className="about-grid reveal delay-1">
-          {/* LEFT */}
           <div className="about-left">
             <p className="about-bio">
-              I build end-to-end systems — raw data through model training, REST API
-              deployment, and into polished frontends. My work spans fraud-detection ML,
-              NLP text classification, real-time WebSocket applications, and React UIs.
-              Every project shipped is production-deployed and battle-tested.
+              I'm Sugumaran — a fresh MCA graduate from Tamil Nadu who spent the last
+              two years building actual projects instead of collecting certificates.
+              My work covers fraud-detection ML, NLP classifiers, real-time WebSocket
+              systems, and full-stack React apps. Everything is deployed and linked.
             </p>
             <p className="about-bio" style={{ marginBottom: 28 }}>
-              Available immediately. Open to AI/ML, backend, full-stack, NLP, and data
-              annotation roles — anywhere in India or remote.
+              I'm looking for my first full-time role in AI/ML or full-stack development.
+              I learn fast, ship clean code, and won't ghost you after the interview
+              (I promise). Open to remote or anywhere in India.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {INFO.map(({ icon: Icon, key, val }) => (
@@ -52,11 +49,8 @@ export function About() {
             </div>
           </div>
 
-          {/* RIGHT — education */}
           <div className="about-right">
-            <span className="sec-tag f-mono" style={{ marginBottom: 20, display: 'block' }}>
-              Education
-            </span>
+            <span className="sec-tag f-mono" style={{ marginBottom: 20, display: 'block' }}>Education</span>
             <div className="edu-stack">
               {EDU.map((e) => (
                 <div key={e.degree} className="edu-card">

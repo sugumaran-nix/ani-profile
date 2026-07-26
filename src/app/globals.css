@@ -275,16 +275,36 @@ body {
 .hero-root {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr minmax(0, 400px);
   align-items: center;
   position: relative;
   overflow: hidden;
   padding-top: 56px;
   background: var(--bg);
 }
-@media (max-width: 900px) {
-  .hero-root { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
+/* Tablet — stack vertically, card centred below */
+@media (max-width: 960px) {
+  .hero-root {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  .hero-right {
+    display: flex !important;
+    justify-content: center;
+    padding: 0 28px 60px !important;
+  }
+  .hero-right > * {
+    max-width: 380px;
+    width: 100%;
+    aspect-ratio: auto !important;
+  }
+}
+/* Mobile — tighter padding */
+@media (max-width: 520px) {
+  .hero-right > * {
+    max-width: 100%;
+    padding: 24px !important;
+  }
 }
 
 /* Speed lines radiating from name */
@@ -426,11 +446,12 @@ body {
 
 /* Right hero — profile card column */
 .hero-right {
-  padding: 60px 28px 60px 0;
+  padding: 60px 28px 60px 16px;
   position: relative; z-index: 2;
   display: flex; flex-direction: column;
   align-items: stretch; justify-content: center;
   align-self: stretch;
+  min-width: 0; /* prevent overflow in grid */
 }
 
 /* Profile card */
@@ -705,7 +726,7 @@ body {
   grid-template-rows: auto auto;
   gap: 0;
   border: var(--manga-thick) solid var(--txt);
-  box-shadow: 6px 6px 0 var(--txt);
+  /* shadow lives on .proj-block wrapper so it covers cta row too */
 }
 @media (max-width: 700px) { .manga-grid { grid-template-columns: 1fr; } }
 
@@ -801,12 +822,19 @@ body {
 /* View all CTA row */
 .proj-cta-row {
   margin-top: 0;
-  border: var(--manga-thick) solid var(--txt);
-  border-top: none;
+  border-left: var(--manga-thick) solid var(--txt);
+  border-right: var(--manga-thick) solid var(--txt);
+  border-bottom: var(--manga-thick) solid var(--txt);
+  border-top: 2px solid var(--txt);
   background: var(--s2);
   padding: 14px 24px;
   display: flex; align-items: center;
   flex-wrap: wrap; gap: 12px;
+}
+
+/* Wrapper that unifies manga-grid + cta row under one shadow */
+.proj-block {
+  box-shadow: 6px 6px 0 var(--txt);
 }
 
 /* ══════════════════════════════════════════════════════

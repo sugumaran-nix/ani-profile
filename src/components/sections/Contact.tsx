@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { Send, Linkedin, Github, Mail } from 'lucide-react'
 
-// WhatsApp SVG icon (official brand)
 function WhatsAppIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -12,30 +11,10 @@ function WhatsAppIcon({ size = 16 }: { size?: number }) {
 }
 
 const SOCIALS = [
-  {
-    icon: Linkedin, label: 'LinkedIn',
-    href: 'https://linkedin.com/in/sugumaran-nix',
-    color: '#0077B5',
-    CustomIcon: null,
-  },
-  {
-    icon: null, label: 'WhatsApp',
-    href: 'https://wa.me/91XXXXXXXXXX', // ← replace with your number
-    color: '#25D366',
-    CustomIcon: WhatsAppIcon,
-  },
-  {
-    icon: Github, label: 'GitHub',
-    href: 'https://github.com/sugumaran-nix',
-    color: 'var(--txt)',
-    CustomIcon: null,
-  },
-  {
-    icon: Mail, label: 'Email',
-    href: 'mailto:sugumarankugan@gmail.com',
-    color: 'var(--acc)',
-    CustomIcon: null,
-  },
+  { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/sugumaran-nix',  color: '#0077B5',    CustomIcon: null        },
+  { icon: null,     label: 'WhatsApp', href: 'https://wa.me/916381074457',             color: '#25D366',    CustomIcon: WhatsAppIcon },
+  { icon: Github,   label: 'GitHub',   href: 'https://github.com/sugumaran-nix',       color: 'var(--txt)', CustomIcon: null        },
+  { icon: Mail,     label: 'Email',    href: 'mailto:sugumarankugan@gmail.com',         color: 'var(--acc)', CustomIcon: null        },
 ]
 
 export function Contact() {
@@ -52,7 +31,6 @@ export function Contact() {
 
   return (
     <section id="contact" className="sec screentone" style={{ position: 'relative', overflow: 'hidden' }}>
-      {/* Kanji — 繋 (connection / bond) */}
       <span className="kanji-bg" aria-hidden="true" style={{ left: '-3%', bottom: '5%' }}>繋</span>
 
       <div className="sec-inner">
@@ -60,6 +38,9 @@ export function Contact() {
           <span className="sec-tag f-mono">§ 04</span>
           <h2 className="sec-title f-display">Let's Work Together</h2>
           <div className="sec-rule" />
+          <p style={{ marginTop: 12, fontSize: 13, color: 'var(--t3)', fontFamily: 'var(--font-mono)' }}>
+            // I read every message. Response time: usually a few hours, not a few weeks.
+          </p>
         </div>
 
         <div className="contact-wrap reveal delay-1">
@@ -78,7 +59,7 @@ export function Contact() {
               </div>
               <div className="c-field">
                 <label className="c-label f-mono">Message</label>
-                <textarea required rows={5} placeholder="What would you like to discuss?"
+                <textarea required rows={5} placeholder="Tell me about the role or project — I'm listening."
                   value={form.message} onChange={set('message')} className="c-input" />
               </div>
               <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
@@ -90,21 +71,22 @@ export function Contact() {
           {/* RIGHT — availability + socials */}
           <div className="contact-right">
             <div>
-              <p className="c-avail f-title">Open to AI/ML, backend, full-stack, and NLP roles.</p>
-              <p className="c-avail-sub">Available immediately · India or Remote</p>
+              <p className="c-avail f-title">Open to the right opportunity.</p>
+              <p className="c-avail-sub">
+                AI/ML, full-stack, backend, NLP — india-based or remote.
+                Fresher, but I come with four shipped projects and zero excuses.
+              </p>
 
               <div className="social-grid">
                 {SOCIALS.map(({ icon: Icon, CustomIcon, label, href, color }) => (
-                  <a
-                    key={label}
-                    href={href}
+                  <a key={label} href={href}
                     target={href.startsWith('http') ? '_blank' : undefined}
                     rel="noopener noreferrer"
                     className="soc-btn"
                     onMouseEnter={e => {
                       const isVar = color.startsWith('var(')
                       e.currentTarget.style.borderColor = color
-                      e.currentTarget.style.color = isVar ? color : color
+                      e.currentTarget.style.color = color
                       e.currentTarget.style.background = isVar
                         ? `color-mix(in srgb, ${color} 12%, transparent)`
                         : `${color}18`
@@ -124,7 +106,7 @@ export function Contact() {
 
             <div style={{ marginTop: 28, paddingTop: 20, borderTop: '2px solid var(--txt)' }}>
               <span className="f-mono" style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--t3)', textTransform: 'uppercase' }}>
-                Response within 24 hrs · sugumarankugan@gmail.com
+                sugumarankugan@gmail.com · +91 63810 74457
               </span>
             </div>
           </div>
