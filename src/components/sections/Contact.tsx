@@ -1,6 +1,7 @@
 'use client'
-import { useState } from 'react'
-import { Send, Linkedin, Github, Mail } from 'lucide-react'
+import { useRef, useState } from 'react'
+import emailjs from '@emailjs/browser'
+import { Send, Loader2, CheckCircle, AlertCircle, Linkedin, Github, Mail } from 'lucide-react'
 
 function WhatsAppIcon({ size = 16 }: { size?: number }) {
   return (
@@ -17,17 +18,36 @@ const SOCIALS = [
   { icon: Mail,     label: 'Email',    href: 'mailto:sugumarankugan@gmail.com',         color: 'var(--acc)', CustomIcon: null        },
 ]
 
-export function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm(f => ({ ...f, [k]: e.target.value }))
+type Status = 'idle' | 'sending' | 'sent' | 'error'
 
-  const submit = (e: React.FormEvent) => {
+export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [status, setStatus] = useState<Status>('idle')
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const sub  = encodeURIComponent(`Portfolio inquiry from ${form.name}`)
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
-    window.location.href = `mailto:sugumarankugan@gmail.com?subject=${sub}&body=${body}`
+    if (status === 'sending') return
+    setStatus('sending')
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      setStatus('sent')
+      formRef.current?.reset()
+    } catch {
+      setStatus('error')
+    }
   }
+
+  const btnContent = {
+    idle:    { icon: <Send size={14} />,           text: 'Send Message'  },
+    sending: { icon: <Loader2 size={14} className="spin" />, text: 'Sending…'     },
+    sent:    { icon: <CheckCircle size={14} />,    text: 'Message Sent!' },
+    error:   { icon: <AlertCircle size={14} />,    text: 'Try Again'     },
+  }[status]
 
   return (
     <section id="contact" className="sec screentone" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -46,24 +66,56 @@ export function Contact() {
         <div className="contact-wrap reveal delay-1">
           {/* LEFT — form */}
           <div className="contact-left">
-            <form onSubmit={submit}>
+            <form ref={formRef} onSubmit={submit}>
               <div className="c-field">
                 <label className="c-label f-mono">Your Name</label>
-                <input type="text" required placeholder="Your full name"
-                  value={form.name} onChange={set('name')} className="c-input" />
+                <input
+                  type="text"
+                  name="from_name"
+                  required
+                  placeholder="Your full name"
+                  className="c-input"
+                />
               </div>
               <div className="c-field">
                 <label className="c-label f-mono">Email</label>
-                <input type="email" required placeholder="your@email.com"
-                  value={form.email} onChange={set('email')} className="c-input" />
+                <input
+                  type="email"
+                  name="from_email"
+                  required
+                  placeholder="your@email.com"
+                  className="c-input"
+                />
               </div>
               <div className="c-field">
                 <label className="c-label f-mono">Message</label>
-                <textarea required rows={5} placeholder="Tell me about the role or project — I'm listening."
-                  value={form.message} onChange={set('message')} className="c-input" />
+                <textarea
+                  name="message"
+                  required
+                  rows={5}
+                  placeholder="Tell me about the role or project — I'm listening."
+                  className="c-input"
+                />
               </div>
-              <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                <Send size={14} /> Send Message
+
+              {status === 'sent' && (
+                <p className="f-mono" style={{ fontSize: 12, color: 'var(--acc3, #22c55e)', marginBottom: 12 }}>
+                  ✓ Got it — I'll reply within a few hours.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="f-mono" style={{ fontSize: 12, color: '#ef4444', marginBottom: 12 }}>
+                  Something went wrong. Try emailing directly: sugumarankugan@gmail.com
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="btn-primary"
+                style={{ width: '100%', justifyContent: 'center', opacity: status === 'sending' ? 0.7 : 1 }}
+                disabled={status === 'sending'}
+              >
+                {btnContent.icon} {btnContent.text}
               </button>
             </form>
           </div>
