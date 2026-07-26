@@ -289,42 +289,26 @@ body {
   margin: 0 auto;
   padding: 60px 28px;
   display: grid;
-  grid-template-columns: 1fr minmax(0, 360px);
+  grid-template-columns: 1fr minmax(0, 340px);
   gap: 48px;
   align-items: center;
   position: relative;
   z-index: 2;
 }
 
-/* Tablet — side by side until 860px, then stack */
+/* Tablet — stack vertically */
 @media (max-width: 860px) {
   .hero-inner {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 48px 28px 56px;
-  }
-  .hero-right {
-    align-items: center;
-    width: 100%;
-  }
-  .profile-card {
-    max-width: 340px;
-    margin: 0 auto;
+    gap: 32px;
+    padding: 52px 28px 56px;
   }
 }
 /* Mobile */
 @media (max-width: 480px) {
   .hero-inner {
-    padding: 40px 20px 52px;
-    gap: 24px;
-  }
-  .profile-card {
-    max-width: 100%;
-    padding: 24px 20px !important;
-  }
-  .profile-card-img {
-    width: 110px !important;
-    height: 110px !important;
+    padding: 44px 20px 52px;
+    gap: 28px;
   }
 }
 
@@ -367,10 +351,8 @@ body {
 .hero-left {
   display: flex; flex-direction: column;
   justify-content: center;
-  padding: 0;
+  width: 100%; min-width: 0;
   position: relative; z-index: 2;
-  min-width: 0;
-  width: 100%;
 }
 
 /* Eyebrow — manga chapter label */
@@ -380,9 +362,10 @@ body {
   text-transform: uppercase;
   color: var(--acc);
   margin-bottom: 16px;
-  display: flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; gap: 10px;
   border-left: 3px solid var(--acc);
   padding-left: 12px;
+  width: fit-content;
 }
 
 /* Name — impact title card treatment */
@@ -469,12 +452,11 @@ body {
 
 /* Right hero — profile card column */
 .hero-right {
-  padding: 0;
+  width: 100%; min-width: 0;
   position: relative; z-index: 2;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   align-self: center;
-  min-width: 0;
 }
 
 /* Profile card */
@@ -485,8 +467,15 @@ body {
   padding: 32px 28px;
   display: flex; flex-direction: column; align-items: center;
   justify-content: center;
-  gap: 18px; width: 100%;
+  gap: 18px; width: 100%; max-width: 360px;
   position: relative;
+}
+@media (max-width: 860px) {
+  .profile-card { max-width: 320px; }
+}
+@media (max-width: 480px) {
+  .profile-card { max-width: 100%; padding: 24px 20px; }
+  .profile-card-img { width: 100px !important; height: 100px !important; }
 }
 .profile-card-img {
   width: 150px; height: 150px;
