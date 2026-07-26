@@ -296,33 +296,35 @@ body {
   z-index: 2;
 }
 
-/* Tablet — stack vertically, card centred below */
-@media (max-width: 960px) {
+/* Tablet — side by side until 860px, then stack */
+@media (max-width: 860px) {
   .hero-inner {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    gap: 40px;
-    padding: 60px 28px 60px;
+    gap: 28px;
+    padding: 48px 28px 56px;
   }
   .hero-right {
-    display: flex !important;
-    justify-content: center;
-    padding: 0 !important;
-  }
-  .hero-right > * {
-    max-width: 380px;
+    align-items: center;
     width: 100%;
-    aspect-ratio: auto !important;
+  }
+  .profile-card {
+    max-width: 340px;
+    margin: 0 auto;
   }
 }
-/* Mobile — tighter padding */
-@media (max-width: 520px) {
+/* Mobile */
+@media (max-width: 480px) {
   .hero-inner {
-    padding: 48px 20px 48px;
+    padding: 40px 20px 52px;
+    gap: 24px;
   }
-  .hero-right > * {
+  .profile-card {
     max-width: 100%;
-    padding: 24px !important;
+    padding: 24px 20px !important;
+  }
+  .profile-card-img {
+    width: 110px !important;
+    height: 110px !important;
   }
 }
 
@@ -468,9 +470,9 @@ body {
   padding: 0;
   position: relative; z-index: 2;
   display: flex; flex-direction: column;
-  align-items: stretch; justify-content: center;
-  align-self: stretch;
-  min-width: 0; /* prevent overflow in grid */
+  align-items: center; justify-content: center;
+  align-self: center;
+  min-width: 0;
 }
 
 /* Profile card */
@@ -478,10 +480,10 @@ body {
   background: var(--surface);
   border: var(--manga-thick) solid var(--txt);
   box-shadow: 4px 4px 0 var(--acc);
-  padding: 36px 32px 32px;
+  padding: 32px 28px;
   display: flex; flex-direction: column; align-items: center;
   justify-content: center;
-  gap: 20px; width: 100%; height: 100%;
+  gap: 18px; width: 100%;
   position: relative;
 }
 .profile-card-img {
@@ -765,11 +767,19 @@ body {
   .mp-card:nth-child(3) { border-bottom: var(--manga-thick) solid var(--txt); }
 }
 
-/* Colour splash header */
+/* Card inner layout — image left (50%), content right (50%) */
+.mp-card {
+  flex-direction: row !important;
+}
+
+/* Colour splash header — left half of card */
 .mp-header {
-  height: 240px;
-  position: relative; overflow: hidden; flex-shrink: 0;
+  width: 50%;
+  flex-shrink: 0;
+  position: relative; overflow: hidden;
   background: #060606;
+  /* fill full card height */
+  align-self: stretch;
 }
 .mp-header img {
   width: 100%; height: 100%;
@@ -778,7 +788,7 @@ body {
 }
 .mp-header-bar {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 10px 20px;
+  padding: 8px 12px;
   background: linear-gradient(0deg, rgba(0,0,0,0.80) 0%, transparent 100%);
   display: flex; justify-content: space-between; align-items: flex-end;
   z-index: 2;
@@ -791,24 +801,38 @@ body {
   border-left: 2px solid var(--acc);
 }
 
-.mp-body { padding: 16px 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+/* Right half — content */
+.mp-body {
+  padding: 16px 18px;
+  flex: 1;
+  display: flex; flex-direction: column; gap: 8px;
+  min-width: 0;
+  border-left: var(--manga-thick) solid var(--txt);
+}
 .mp-title {
   font-family: var(--font-display);
-  font-size: 18px; font-weight: 900;
+  font-size: 16px; font-weight: 900;
   color: var(--txt); line-height: 1.1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.mp-summary { font-size: 13px; color: var(--t2); line-height: 1.6; }
+.mp-summary { font-size: 12px; color: var(--t2); line-height: 1.6; }
 .mp-hits {
   list-style: none; display: flex; flex-direction: column; gap: 4px;
   margin-top: auto;
 }
 .mp-hits li {
-  font-size: 12px; color: var(--txt);
-  display: flex; gap: 6px; line-height: 1.45;
+  font-size: 11.5px; color: var(--txt);
+  display: flex; gap: 6px; line-height: 1.4;
 }
 .mp-hits li::before { content: '▸'; color: var(--acc); flex-shrink: 0; }
+
+/* Mobile — revert to column layout */
+@media (max-width: 700px) {
+  .mp-card { flex-direction: column !important; }
+  .mp-header { width: 100%; height: 160px; align-self: auto; }
+  .mp-body { border-left: none; border-top: var(--manga-thick) solid var(--txt); }
+}
 .dark .mp-hits {
   background: color-mix(in srgb, var(--surface) 85%, var(--acc) 15%);
   border: 1px solid color-mix(in srgb, var(--acc) 25%, transparent);
@@ -818,9 +842,11 @@ body {
 .dark .mp-hits li { color: var(--t2); }
 
 .mp-foot {
-  padding: 12px 20px;
-  border-top: 2px solid var(--txt);
+  padding-top: 10px;
+  margin-top: auto;
+  border-top: 2px solid var(--border);
   display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  flex-wrap: wrap;
 }
 .mp-gh-link,
 .mp-demo-link {
