@@ -2,7 +2,7 @@
 
 Personal portfolio site built with **Next.js 14**, **Tailwind CSS**, and **Framer Motion**. Features a dark/light theme toggle, animated sections, and a working contact form powered by EmailJS.
 
-**Live →** _your-vercel-url.vercel.app_
+**Live →** _sugumaran-profile.vercel.app_
 
 ---
 
