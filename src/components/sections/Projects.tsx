@@ -5,12 +5,10 @@ const PROJECTS = [
   {
     title: 'Fake Job Detector',
     category: 'Machine Learning',
-    summary: 'An ML pipeline that sniffs out fraudulent job postings. Trained on 17,880 real listings — the dataset was imbalanced and messy, which made it more interesting than most textbook problems.',
+    summary: 'ML pipeline that sniffs out fraudulent job postings — trained on 17,880 real listings with imbalanced, messy data.',
     hits: [
       '87.57% Fraud F1-score on imbalanced data',
       '10,000-feature TF-IDF bigram pipeline',
-      'Custom 10-signal URL fraud heuristic',
-      'Runtime model switching via REST API',
       'Sub-800ms end-to-end inference',
     ],
     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=480&h=220&fit=crop&crop=center&auto=format',
@@ -20,12 +18,10 @@ const PROJECTS = [
   {
     title: 'AI Content Detector',
     category: 'NLP',
-    summary: 'Tells you whether text was written by a human or a language model — using perplexity and burstiness analysis. No API calls, no black box. Just statistics doing their job.',
+    summary: 'Detects human vs LLM-written text via perplexity and burstiness analysis — no API calls, no black box.',
     hits: [
       'Perplexity, burstiness & variance features',
       'Sentence-level AI-span explainability',
-      'Evaluated on 500+ text samples',
-      'Structured JSON with confidence scores',
       'Low-latency FastAPI backend',
     ],
     img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=480&h=220&fit=crop&crop=center&auto=format',
@@ -35,12 +31,10 @@ const PROJECTS = [
   {
     title: 'Sketchline',
     category: 'Real-time WebSocket',
-    summary: 'A multiplayer whiteboard built on a custom WebSocket protocol — no Socket.io, no third-party sync libraries. Handles disconnections, replays board state, and tracks live cursors.',
+    summary: 'Multiplayer whiteboard on a custom WebSocket protocol — zero Socket.io, live cursors, disconnect-safe replay.',
     hits: [
       'Sub-100ms stroke synchronisation',
       'Custom 7-message JSON protocol (zero libs)',
-      '20 cursor updates per second',
-      'Exponential backoff reconnection',
       'Board state replay on reconnect',
     ],
     img: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=480&h=220&fit=crop&crop=center&auto=format',
@@ -50,13 +44,11 @@ const PROJECTS = [
   {
     title: 'ProjectScope',
     category: 'Productivity App',
-    summary: 'A task manager built around the Eisenhower Matrix — drag things between urgent/important quadrants, sync across tabs, and actually stay organised. WCAG-compliant too, because accessibility matters.',
+    summary: 'Task manager built around the Eisenhower Matrix — drag across quadrants, sync across tabs, WCAG-compliant.',
     hits: [
       'dnd-kit drag-and-drop, keyboard accessible',
       'localStorage + cross-tab sync',
       'Eisenhower Matrix prioritisation',
-      'WCAG-compliant interactions',
-      'Fully responsive, production deployed',
     ],
     img: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=480&h=220&fit=crop&crop=center&auto=format',
     github: 'https://github.com/sugumaran-nix/ProjectScope',
