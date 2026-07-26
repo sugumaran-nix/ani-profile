@@ -95,15 +95,14 @@ export function Projects() {
                   <ul className="mp-hits">
                     {p.hits.map(h => <li key={h}>{h}</li>)}
                   </ul>
-                </div>
-
-                <div className="mp-foot">
-                  <a href={p.demo} target="_blank" rel="noopener noreferrer" className="mp-demo-link f-mono">
-                    <ExternalLink size={12} /> Live Demo
-                  </a>
-                  <a href={p.github} target="_blank" rel="noopener noreferrer" className="mp-gh-link f-mono">
-                    <Github size={12} /> GitHub
-                  </a>
+                  <div className="mp-foot">
+                    <a href={p.demo} target="_blank" rel="noopener noreferrer" className="mp-demo-link f-mono">
+                      <ExternalLink size={12} /> Live Demo
+                    </a>
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" className="mp-gh-link f-mono">
+                      <Github size={12} /> GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
