@@ -274,24 +274,40 @@ body {
 ══════════════════════════════════════════════════════ */
 .hero-root {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr minmax(0, 400px);
+  display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
   padding-top: 56px;
   background: var(--bg);
 }
+
+/* Inner wrapper — matches sec-inner so hero aligns with all other sections */
+.hero-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 28px;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 360px);
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
 /* Tablet — stack vertically, card centred below */
 @media (max-width: 960px) {
-  .hero-root {
+  .hero-inner {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+    gap: 40px;
+    padding: 60px 28px 60px;
   }
   .hero-right {
     display: flex !important;
     justify-content: center;
-    padding: 0 28px 60px !important;
+    padding: 0 !important;
   }
   .hero-right > * {
     max-width: 380px;
@@ -301,6 +317,9 @@ body {
 }
 /* Mobile — tighter padding */
 @media (max-width: 520px) {
+  .hero-inner {
+    padding: 48px 20px 48px;
+  }
   .hero-right > * {
     max-width: 100%;
     padding: 24px !important;
@@ -346,7 +365,7 @@ body {
 .hero-left {
   display: flex; flex-direction: column;
   justify-content: center;
-  padding: 60px 48px 60px 28px;
+  padding: 0;
   position: relative; z-index: 2;
 }
 
@@ -446,7 +465,7 @@ body {
 
 /* Right hero — profile card column */
 .hero-right {
-  padding: 60px 28px 60px 16px;
+  padding: 0;
   position: relative; z-index: 2;
   display: flex; flex-direction: column;
   align-items: stretch; justify-content: center;
@@ -748,7 +767,7 @@ body {
 
 /* Colour splash header */
 .mp-header {
-  height: 180px;
+  height: 240px;
   position: relative; overflow: hidden; flex-shrink: 0;
   background: #060606;
 }
@@ -772,7 +791,7 @@ body {
   border-left: 2px solid var(--acc);
 }
 
-.mp-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.mp-body { padding: 16px 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .mp-title {
   font-family: var(--font-display);
   font-size: 18px; font-weight: 900;
@@ -780,14 +799,14 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.mp-summary { font-size: 13.5px; color: var(--t2); line-height: 1.7; }
+.mp-summary { font-size: 13px; color: var(--t2); line-height: 1.6; }
 .mp-hits {
-  list-style: none; display: flex; flex-direction: column; gap: 5px;
+  list-style: none; display: flex; flex-direction: column; gap: 4px;
   margin-top: auto;
 }
 .mp-hits li {
-  font-size: 13px; color: var(--txt);
-  display: flex; gap: 7px; line-height: 1.5;
+  font-size: 12px; color: var(--txt);
+  display: flex; gap: 6px; line-height: 1.45;
 }
 .mp-hits li::before { content: '▸'; color: var(--acc); flex-shrink: 0; }
 .dark .mp-hits {
