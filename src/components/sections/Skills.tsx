@@ -44,7 +44,7 @@ export function Skills() {
           <h2 className="sec-title f-display">Technical Stack</h2>
           <div className="sec-rule" />
           <p style={{ marginTop: 12, fontSize: 13, color: 'var(--t3)', fontFamily: 'var(--font-mono)' }}>
-            // things I've used to build real projects, not just things that look good on a resume
+            // things I've actually used to build and ship real projects, not just listed for keywords
           </p>
         </div>
 

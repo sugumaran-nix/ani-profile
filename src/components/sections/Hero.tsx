@@ -6,9 +6,9 @@ import { Download, Mail, Github, Linkedin } from 'lucide-react'
 const ROLES = [
   'AI/ML Engineer',
   'Full Stack Developer',
-  'NLP Specialist',
-  'Python Developer',
-  'Backend Engineer',
+  'React + Python + FastAPI',
+  'Still Learning, Always Shipping',
+  'Open to Work',
 ]
 
 const PROFILE_SOCIALS = [
@@ -115,7 +115,7 @@ export function Hero() {
         <motion.div className="hero-left" variants={container} initial="hidden" animate="show">
           <SpeedLines />
           <motion.div variants={slamLeft}>
-            <span className="hero-eyebrow f-mono">MCA Graduate · 2026 · Tamil Nadu, India</span>
+            <span className="hero-eyebrow f-mono">MCA Grad · Anna University · Coimbatore, India</span>
           </motion.div>
           <motion.div variants={slamLeft} style={{ position: 'relative', zIndex: 1 }}>
             <GlitchName />
@@ -127,10 +127,9 @@ export function Hero() {
             <RoleFlip />
           </motion.div>
           <motion.p className="hero-bio" variants={slamUp}>
-            Fresh MCA grad who spent two years actually building things — not just watching
-            tutorials. Four shipped projects, real datasets, production deployments. Currently
-            looking for a first full-time role where I can do more of the same (but get paid
-            for it, which would be nice).
+            Recent MCA grad from Anna University. I build full-stack AI apps — the kind that
+            actually do something useful, not just hello world with a neural network slapped on.
+            Four projects, all deployed, all open source. Looking for a team that ships.
           </motion.p>
           <motion.div className="hero-ctas" variants={slamUp}>
             <a href="/resume.pdf" download className="btn-primary">
@@ -156,7 +155,7 @@ export function Hero() {
               className="profile-card-img"
             />
             <p className="profile-card-info f-mono">
-              MCA '26 · building things with Python & React
+              MCA '26 · building full-stack AI apps that actually work
               <br />
               <span style={{ color: 'var(--acc)', fontWeight: 700 }}>open to work</span>
             </p>

@@ -5,7 +5,7 @@ const PROJECTS = [
   {
     title: 'Fake Job Detector',
     category: 'Machine Learning',
-    summary: 'Detects fake job listings using ML — trained on 17,880 real-world postings.',
+    summary: 'Tired of fake job postings? Built a classifier that catches them. NLP + TF-IDF + ensemble models. Deployed on Render because Heroku did what Heroku does.',
     hits: [
       '87.57% Fraud F1-score on imbalanced data',
       '10,000-feature TF-IDF bigram pipeline',
@@ -18,7 +18,7 @@ const PROJECTS = [
   {
     title: 'AI Content Detector',
     category: 'NLP',
-    summary: 'Classifies human vs AI text using perplexity & burstiness — no API, pure stats.',
+    summary: 'Detects AI-generated text before your professor does. Perplexity + burstiness features, FastAPI backend. No GPU needed.',
     hits: [
       'Perplexity, burstiness & variance features',
       'Sentence-level AI-span explainability',
@@ -31,7 +31,7 @@ const PROJECTS = [
   {
     title: 'Sketchline',
     category: 'Real-time WebSocket',
-    summary: 'Real-time multiplayer whiteboard — custom WebSocket protocol, no third-party sync libs.',
+    summary: 'Real-time collaborative whiteboard — multiplayer drawing with live cursors, WebSocket sync, 10 tools, undo/redo. Built from scratch. No drawing library. Yes, really.',
     hits: [
       'Sub-100ms stroke synchronisation',
       'Custom 7-message JSON protocol (zero libs)',
@@ -44,7 +44,7 @@ const PROJECTS = [
   {
     title: 'ProjectScope',
     category: 'Productivity App',
-    summary: 'Eisenhower Matrix task manager — drag-and-drop, cross-tab sync, WCAG-compliant.',
+    summary: 'Turns vague project ideas into actual plans. Eisenhower Matrix, drag-and-drop, cross-tab sync. For people who have ideas but no roadmap.',
     hits: [
       'dnd-kit drag-and-drop, keyboard accessible',
       'localStorage + cross-tab sync',
@@ -73,7 +73,7 @@ export function Projects() {
           <h2 className="sec-title f-display">Shipped Work</h2>
           <div className="sec-rule" />
           <p style={{ marginTop: 12, fontSize: 13, color: 'var(--t3)', fontFamily: 'var(--font-mono)' }}>
-            // four projects, all live, all open source — click around
+            // four projects, all live, all open source — links work, not just screenshots
           </p>
         </div>
 
@@ -111,7 +111,7 @@ export function Projects() {
 
           <div className="proj-cta-row reveal delay-2" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
             <span className="f-mono" style={{ fontSize: 11, color: 'var(--t3)', letterSpacing: '0.1em' }}>
-              more experiments on GitHub — some good, some educational
+              more on GitHub — some good, some were learning experiences (still shipping)
             </span>
             <a href="https://github.com/sugumaran-nix" target="_blank" rel="noopener noreferrer"
               className="btn-sec" style={{ fontSize: 12 }}>

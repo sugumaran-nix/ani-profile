@@ -39,7 +39,7 @@ export function Contact() {
           <h2 className="sec-title f-display">Let's Work Together</h2>
           <div className="sec-rule" />
           <p style={{ marginTop: 12, fontSize: 13, color: 'var(--t3)', fontFamily: 'var(--font-mono)' }}>
-            // I read every message. Response time: usually a few hours, not a few weeks.
+            // I read every message. Response time: a few hours, not "I'll get back to you" and then nothing.
           </p>
         </div>
 
@@ -73,8 +73,8 @@ export function Contact() {
             <div>
               <p className="c-avail f-title">Open to the right opportunity.</p>
               <p className="c-avail-sub">
-                AI/ML, full-stack, backend, NLP — india-based or remote.
-                Fresher, but I come with four shipped projects and zero excuses.
+                AI/ML, full-stack, backend, NLP — India-based or remote. Fresher, yes.
+                But I come with four shipped projects, a working GitHub, and zero excuses.
               </p>
 
               <div className="social-grid">
@@ -106,7 +106,7 @@ export function Contact() {
 
             <div style={{ marginTop: 28, paddingTop: 20, borderTop: '2px solid var(--txt)' }}>
               <span className="f-mono" style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--t3)', textTransform: 'uppercase' }}>
-                Prefer async? Drop a message above — I'll get back to you within hours, not days.
+                Prefer async? Drop a message above — I'll actually reply, within hours not weeks.
               </span>
             </div>
           </div>
