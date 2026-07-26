@@ -5,7 +5,7 @@ const PROJECTS = [
   {
     title: 'Fake Job Detector',
     category: 'Machine Learning',
-    summary: 'ML pipeline that sniffs out fraudulent job postings — trained on 17,880 real listings with imbalanced, messy data.',
+    summary: 'Detects fake job listings using ML — trained on 17,880 real-world postings.',
     hits: [
       '87.57% Fraud F1-score on imbalanced data',
       '10,000-feature TF-IDF bigram pipeline',
@@ -18,7 +18,7 @@ const PROJECTS = [
   {
     title: 'AI Content Detector',
     category: 'NLP',
-    summary: 'Detects human vs LLM-written text via perplexity and burstiness analysis — no API calls, no black box.',
+    summary: 'Classifies human vs AI text using perplexity & burstiness — no API, pure stats.',
     hits: [
       'Perplexity, burstiness & variance features',
       'Sentence-level AI-span explainability',
@@ -31,7 +31,7 @@ const PROJECTS = [
   {
     title: 'Sketchline',
     category: 'Real-time WebSocket',
-    summary: 'Multiplayer whiteboard on a custom WebSocket protocol — zero Socket.io, live cursors, disconnect-safe replay.',
+    summary: 'Real-time multiplayer whiteboard — custom WebSocket protocol, no third-party sync libs.',
     hits: [
       'Sub-100ms stroke synchronisation',
       'Custom 7-message JSON protocol (zero libs)',
@@ -44,7 +44,7 @@ const PROJECTS = [
   {
     title: 'ProjectScope',
     category: 'Productivity App',
-    summary: 'Task manager built around the Eisenhower Matrix — drag across quadrants, sync across tabs, WCAG-compliant.',
+    summary: 'Eisenhower Matrix task manager — drag-and-drop, cross-tab sync, WCAG-compliant.',
     hits: [
       'dnd-kit drag-and-drop, keyboard accessible',
       'localStorage + cross-tab sync',
