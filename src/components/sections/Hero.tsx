@@ -109,82 +109,72 @@ export function Hero() {
         <div className="hero-orb" style={{ width: 220, height: 220, top: '25%', right: '10%', background: 'var(--acc3)', opacity: 0.07, animationDelay: '-5s' }} />
       </div>
 
-      {/* LEFT */}
-      <motion.div className="hero-left" variants={container} initial="hidden" animate="show">
-        <SpeedLines />
-        <motion.div variants={slamLeft}>
-          <span className="hero-eyebrow f-mono">MCA Graduate · 2026 · Tamil Nadu, India</span>
+      {/* Centred wrapper — matches sec-inner max-width & side padding */}
+      <div className="hero-inner">
+        {/* LEFT */}
+        <motion.div className="hero-left" variants={container} initial="hidden" animate="show">
+          <SpeedLines />
+          <motion.div variants={slamLeft}>
+            <span className="hero-eyebrow f-mono">MCA Graduate · 2026 · Tamil Nadu, India</span>
+          </motion.div>
+          <motion.div variants={slamLeft} style={{ position: 'relative', zIndex: 1 }}>
+            <GlitchName />
+          </motion.div>
+          <motion.div variants={slamUp}>
+            <p className="hero-subtitle f-title">AI / ML — Full Stack — NLP</p>
+          </motion.div>
+          <motion.div variants={slamUp}>
+            <RoleFlip />
+          </motion.div>
+          <motion.p className="hero-bio" variants={slamUp}>
+            Fresh MCA grad who spent two years actually building things — not just watching
+            tutorials. Four shipped projects, real datasets, production deployments. Currently
+            looking for a first full-time role where I can do more of the same (but get paid
+            for it, which would be nice).
+          </motion.p>
+          <motion.div className="hero-ctas" variants={slamUp}>
+            <a href="/resume.pdf" download className="btn-primary">
+              <Download size={14} /> Download CV
+            </a>
+            <a href="#contact" className="btn-sec">
+              <Mail size={14} /> Contact Me
+            </a>
+          </motion.div>
         </motion.div>
-        <motion.div variants={slamLeft} style={{ position: 'relative', zIndex: 1 }}>
-          <GlitchName />
-        </motion.div>
-        <motion.div variants={slamUp}>
-          <p className="hero-subtitle f-title">AI / ML — Full Stack — NLP</p>
-        </motion.div>
-        <motion.div variants={slamUp}>
-          <RoleFlip />
-        </motion.div>
-        <motion.p className="hero-bio" variants={slamUp}>
-          Fresh MCA grad who spent two years actually building things — not just watching
-          tutorials. Four shipped projects, real datasets, production deployments. Currently
-          looking for a first full-time role where I can do more of the same (but get paid
-          for it, which would be nice).
-        </motion.p>
-        <motion.div className="hero-ctas" variants={slamUp}>
-          <a href="/resume.pdf" download className="btn-primary">
-            <Download size={14} /> Download CV
-          </a>
-          <a href="#contact" className="btn-sec">
-            <Mail size={14} /> Contact Me
-          </a>
-        </motion.div>
-      </motion.div>
 
-      {/* RIGHT — profile card */}
-      <motion.div className="hero-right" variants={container} initial="hidden" animate="show">
-        <motion.div
-          variants={slamRight}
-          whileHover={{ x: -4, y: -4, boxShadow: '8px 8px 0 var(--txt)' }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-          style={{
-            background: 'var(--surface)',
-            border: 'var(--manga-thick) solid var(--txt)',
-            boxShadow: '4px 4px 0 var(--acc)',
-            width: '100%',
-            display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center',
-            gap: 20, padding: '32px 28px', position: 'relative',
-          }}
-        >
-          <img
-            src="https://github.com/sugumaran-nix.png"
-            alt="Sugumaran S."
-            style={{
-              width: 140, height: 140, borderRadius: '50%',
-              border: '4px solid var(--txt)',
-              boxShadow: '4px 4px 0 var(--acc)',
-              objectFit: 'cover', display: 'block', flexShrink: 0,
-            }}
-          />
-          <p className="f-mono" style={{ fontSize: 12.5, letterSpacing: '0.04em', color: 'var(--t2)', textAlign: 'center', lineHeight: 1.75, margin: 0 }}>
-            MCA '26 · building things with Python & React
-            <br />
-            <span style={{ color: 'var(--acc)', fontWeight: 700 }}>open to work</span>
-          </p>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-            {PROFILE_SOCIALS.map(({ Icon, href, label }) => (
-              <a key={label} href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                className="profile-soc-btn" aria-label={label}
-              >
-                <Icon size={14} />
-                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em' }}>{label}</span>
-              </a>
-            ))}
-          </div>
+        {/* RIGHT — profile card */}
+        <motion.div className="hero-right" variants={container} initial="hidden" animate="show">
+          <motion.div
+            className="profile-card"
+            variants={slamRight}
+            whileHover={{ x: -4, y: -4, boxShadow: '8px 8px 0 var(--txt)' }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+          >
+            <img
+              src="https://github.com/sugumaran-nix.png"
+              alt="Sugumaran S."
+              className="profile-card-img"
+            />
+            <p className="profile-card-info f-mono">
+              MCA '26 · building things with Python & React
+              <br />
+              <span style={{ color: 'var(--acc)', fontWeight: 700 }}>open to work</span>
+            </p>
+            <div className="profile-card-socials">
+              {PROFILE_SOCIALS.map(({ Icon, href, label }) => (
+                <a key={label} href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel="noopener noreferrer"
+                  className="profile-soc-btn" aria-label={label}
+                >
+                  <Icon size={14} />
+                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em' }}>{label}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
 
       <div aria-hidden="true" style={{
         position: 'absolute', bottom: 0, left: 0, right: 0,
