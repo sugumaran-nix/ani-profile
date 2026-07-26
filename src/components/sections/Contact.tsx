@@ -106,7 +106,7 @@ export function Contact() {
 
             <div style={{ marginTop: 28, paddingTop: 20, borderTop: '2px solid var(--txt)' }}>
               <span className="f-mono" style={{ fontSize: 10, letterSpacing: '0.22em', color: 'var(--t3)', textTransform: 'uppercase' }}>
-                sugumarankugan@gmail.com · +91 63810 74457
+                Prefer async? Drop a message above — I'll get back to you within hours, not days.
               </span>
             </div>
           </div>
