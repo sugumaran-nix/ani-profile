@@ -28,16 +28,13 @@ export function About() {
         <div className="about-grid reveal delay-1">
           <div className="about-left">
             <p className="about-bio">
-              I'm Sugumaran — recent MCA grad from Anna University (2026). I build full-stack
-              AI apps — fraud detectors, NLP classifiers, real-time WebSocket systems. The kind
-              of projects that are actually deployed and actually do something, not just
-              screenshots of a Jupyter notebook.
+              MCA grad from Anna University (2026). I build full-stack AI apps —
+              fraud detectors, NLP classifiers, real-time WebSocket systems.
+              Deployed, not just demoed.
             </p>
             <p className="about-bio" style={{ marginBottom: 28 }}>
-              Looking for my first full-time role in AI/ML or full-stack development.
-              Still learning, always shipping. Open to remote or anywhere in India.
-              My projects are below — they're real, they're deployed, and they work
-              (most of the time).
+              Looking for my first role in AI/ML or full-stack. Open to remote or anywhere in India.
+              Still learning, always shipping.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {INFO.map(({ icon: Icon, key, val }) => (

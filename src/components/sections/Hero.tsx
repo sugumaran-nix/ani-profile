@@ -127,9 +127,8 @@ export function Hero() {
             <RoleFlip />
           </motion.div>
           <motion.p className="hero-bio" variants={slamUp}>
-            Recent MCA grad from Anna University. I build full-stack AI apps — the kind that
-            actually do something useful, not just hello world with a neural network slapped on.
-            Four projects, all deployed, all open source. Looking for a team that ships.
+            MCA grad. I build full-stack AI apps that actually do something useful.
+            Four projects, all deployed. Looking for a team that ships.
           </motion.p>
           <motion.div className="hero-ctas" variants={slamUp}>
             <a href="/resume.pdf" download className="btn-primary">
